@@ -1,4 +1,6 @@
-// Changes wallpaper to whatever you want. Tested working Windows 11. Change the link to the image you want to use in jpg form.
+// Changes wallpaper to whatever you want.
+// Tested working Windows 11. 
+// Change the link to the image you want to use in jpg form.
 #include "DigiKeyboard.h"
 #define link "https://img.freepik.com/free-photo/painting-mountain-lake-with-mountain-background_188544-9126.jpg"
 void setup() {
