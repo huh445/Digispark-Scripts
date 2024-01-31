@@ -1,0 +1,6 @@
+{
+    "board": "digistump:avr:digispark-tiny",
+    "port": "COM3",
+    "programmer": "micronucleusprog",
+    "sketch": "BSOD\\BSOD.ino"
+}
