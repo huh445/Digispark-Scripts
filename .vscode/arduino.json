@@ -2,5 +2,5 @@
     "board": "digistump:avr:digispark-tiny",
     "port": "COM3",
     "programmer": "micronucleusprog",
-    "sketch": "BSOD\\BSOD.ino"
+    "sketch": "Background-Changer\\Background-Changer.ino"
 }
