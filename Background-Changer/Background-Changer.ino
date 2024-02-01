@@ -1,8 +1,9 @@
 // Changes wallpaper to whatever you want.
 // Tested working Windows 11. 
 // Change the link to the image you want to use in jpg form.
+// TODO better way to get into powershell this shit takes up so much memory
+// comment this shitty ass fucked balls and also the script.ps1 lazy cunt
 #include "DigiKeyboard.h"
-#define link "https://www.mannapro.com/sites/default/files/2023-09/15.png"
 #define KEY_DOWN 0x51
 void setup() {
   pinMode(1, OUTPUT); // LED Setup
