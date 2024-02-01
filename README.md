@@ -4,4 +4,4 @@ Just a few scripts that I have made to troll my friends along the way!
 - Made 2024
 # What scripts are there currently?
 - Force a Blue Screen of Death (BSOD)
-- Change a background to any image (WIP)
+- Change a background to any image
