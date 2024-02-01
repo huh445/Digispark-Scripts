@@ -5,3 +5,5 @@ Just a few scripts that I have made to troll my friends along the way!
 # What scripts are there currently?
 - Force a Blue Screen of Death (BSOD)
 - Change a background to any image
+# How does the background changer work?
+- WIP README LMAO
