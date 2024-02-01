@@ -15,24 +15,17 @@ void loop() {
 
   DigiKeyboard.println("powershell");
   DigiKeyboard.delay(2000);
-
+  DigiKeyboard.println("$path = \"$env:USERPROFILE\\wallpaper.jpg\"");
   DigiKeyboard.println("$client = new-object System.Net.WebClient");
   DigiKeyboard.delay(1000);
-  DigiKeyboard.println("Remove-Item $env:USERPROFILE\\devon.jpg");
+  DigiKeyboard.println("Remove-Item $path");
   DigiKeyboard.delay(500);
-  DigiKeyboard.println("$client.DownloadFile(\""link"\" , \"devon.jpg\")");
+  DigiKeyboard.println("$client.DownloadFile(\""link"\" , \"wallpaper.jpg\")");
   DigiKeyboard.delay(10000);
 
-  DigiKeyboard.print("set-itemproperty -path \"HKCU:\\Control Panel\\Desktop\\\" -name Wallpaper -value $env:USERPROFILE\\devon.jpg"); // Set the wallpaper
-  DigiKeyboard.delay(500);
-  DigiKeyboard.sendKeyStroke(KEY_ENTER);
-  DigiKeyboard.delay(1000);
-
-  DigiKeyboard.println("rundll32.exe user32.dll, UpdatePerUserSystemParameters");
+  DigiKeyboard.println("SystemParametersInfo(SPI_SETDESKWALLPAPER, 0, $path, 0)");
   DigiKeyboard.delay(500);
   
-  DigiKeyboard.println("exit");
-
   digitalWrite(1, LOW);
   for(;;){}
 }
