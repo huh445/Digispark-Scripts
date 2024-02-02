@@ -1,8 +1,5 @@
 // Changes wallpaper to whatever you want.
-// Tested working Windows 11. 
-// Change the link to the image you want to use in jpg form.
-// TODO better way to get into powershell this shit takes up so much memory
-// comment this shitty ass fucked balls and also the script.ps1 lazy cunt
+// Tested working Windows 11.
 #include "DigiKeyboard.h"
 #define KEY_LEFT 0x50
 // CHANGE THE LINK BELOW BEFORE USING
