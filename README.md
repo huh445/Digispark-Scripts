@@ -29,3 +29,9 @@ I find it very funny that the majority of this repository is now C#.
 6. Copy the link to the raw text.
 7. Paste the link in the ino file.
 8. Run!
+
+## Is a release planned?
+
+A release is now planned as the picker is now actually fully built and able to be used.
+This is good news as it will help to show people who are not as experienced in technology how to use a Digispark.
+The release will most likely be at the end of Febuary 2024
