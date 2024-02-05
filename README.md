@@ -15,9 +15,9 @@ It is useful when you don't have much time as the Arduino IDE takes so long to l
 
 It is of course a lot quicker if you have the Arduino Extension set up in VSCode!
 
->This is still a WIP!
+>This is still a WIP.
 
->It still needs to save from the last instance where your Arduino CLI is located!
+>It still needs to save from the last instance where your Arduino CLI is located.
 
 ## How does the background changer work?
 1. Go to ChangeBackground.ps1.
