@@ -11,7 +11,6 @@ class Program
         string arduinoCliPath = Console.ReadLine() ?? string.Empty;
         string sketchDirectory = "..\\..\\..\\.."; // Replace with the path to the directory containing your Arduino sketches
         string board = "digistump:avr:digispark-tiny"; // Replace with the appropriate board identifier for Digispark ATTINY85
-        string programmer = "micronucleus"; // Specify the programmer as "micronucleus"
         string currentDirectory = Directory.GetCurrentDirectory(); // Get the current directory
         Console.WriteLine(Path.GetRelativePath(currentDirectory, "C:\\Users\\charc\\OneDrive\\Documents\\GitHub\\Digispark-Scripts"));
 
@@ -50,9 +49,13 @@ class Program
         process.StartInfo.CreateNoWindow = true;
         process.Start();
 
-        // Read the output
+        // Reads the output and the errors
         string output = process.StandardOutput.ReadToEnd();
-
+        string error = process.StandardError.ReadToEnd();
+        Console.WriteLine("Output:");
+        Console.WriteLine(output);
+        Console.WriteLine("Error:");
+        Console.WriteLine(error);
         // Wait for the process to exit
         process.WaitForExit();
 
