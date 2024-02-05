@@ -14,6 +14,7 @@ The Picker is a program built in C# that automatically uploads the sketches in t
 It is useful when you don't have much time as the Arduino IDE takes so long to launch.
 
 It is of course a lot quicker if you have the Arduino Extension set up in VSCode!
+I find it very funny that the majority of this repository is now C#.
 
 >This is still a WIP.
 
