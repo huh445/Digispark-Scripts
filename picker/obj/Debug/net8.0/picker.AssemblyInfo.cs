@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("picker")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+953ef5e3e328c153ec752ce98ab8165637448a7c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+07182ee677a35669d90973f129810389431ce2ad")]
 [assembly: System.Reflection.AssemblyProductAttribute("picker")]
 [assembly: System.Reflection.AssemblyTitleAttribute("picker")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

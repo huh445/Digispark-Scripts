@@ -1,4 +1,6 @@
-﻿using System;
+﻿// C# program to upload Digispark sketches using Arduino CLI
+// Lightly Commented!
+using System;
 using System.Diagnostics;
 using System.IO;
 
@@ -9,13 +11,10 @@ class Program
     {
         Console.Write("Enter the path to your Arduino CLI executable: ");
         string arduinoCliPath = Console.ReadLine() ?? string.Empty;
-        string sketchDirectory = "..\\..\\..\\.."; // Replace with the path to the directory containing your Arduino sketches
-        string board = "digistump:avr:digispark-tiny"; // Replace with the appropriate board identifier for Digispark ATTINY85
-        string currentDirectory = Directory.GetCurrentDirectory(); // Get the current directory
-        Console.WriteLine(Path.GetRelativePath(currentDirectory, "C:\\Users\\charc\\OneDrive\\Documents\\GitHub\\Digispark-Scripts"));
+        string sketchDirectory = "..\\..\\..\\..";
+        string board = "digistump:avr:digispark-tiny";
+        string currentDirectory = Directory.GetCurrentDirectory();
 
-        // Now you can use parentDirectory.FullName to get the full path of the parent directory
-        // Get the list of .ino files in the sketch directory
         string[] sketchFiles = Directory.GetFiles(sketchDirectory, "*.ino", SearchOption.AllDirectories);
 
         // Display the list of .ino files to the user
