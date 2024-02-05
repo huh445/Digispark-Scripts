@@ -2,5 +2,5 @@
     "board": "digistump:avr:digispark-tiny",
     "port": "COM3",
     "programmer": "micronucleusprog",
-    "sketch": "Powershell-Executer\\Powershell-Executer.ino"
+    "sketch": "Background-Changer\\Background-Changer.ino"
 }
