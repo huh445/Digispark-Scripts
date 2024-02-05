@@ -8,7 +8,7 @@ class Program
     static void Main(string[] args)
     {
         Console.Write("Enter the path to your Arduino CLI executable: ");
-        string arduinoCliPath = Console.ReadLine();
+        string arduinoCliPath = Console.ReadLine() ?? string.Empty;
         string sketchDirectory = "..\\..\\..\\.."; // Replace with the path to the directory containing your Arduino sketches
         string board = "digistump:avr:digispark-tiny"; // Replace with the appropriate board identifier for Digispark ATTINY85
         string programmer = "micronucleus"; // Specify the programmer as "micronucleus"
@@ -28,7 +28,7 @@ class Program
 
         // Prompt the user to select a sketch
         Console.Write("Enter the number of the sketch to upload: ");
-        string input = Console.ReadLine();
+        string input = Console.ReadLine() ?? string.Empty;
         if (!int.TryParse(input, out int selectedSketchIndex) || selectedSketchIndex < 1 || selectedSketchIndex > sketchFiles.Length)
         {
             Console.WriteLine("Invalid input. Exiting...");
@@ -39,7 +39,7 @@ class Program
         string sketchPath = sketchFiles[selectedSketchIndex - 1];
 
         // Build the command to upload the sketch using the micronucleus programmer
-        string command = $"{arduinoCliPath} compile --fqbn {board} --programmer {programmer} {sketchPath}";
+        string command = $"{arduinoCliPath} upload -b {board} {sketchPath}";
 
         // Execute the command
         Process process = new Process();
