@@ -11,7 +11,7 @@ void setup() {
 void loop() {
     DigiKeyboard.sendKeyStroke(0);
     DigiKeyboard.delay(1000);
-
+    DigiKeyboard.sendKeyStroke(KEY_ENTER);
     digitalWrite(1, HIGH); // Turn on LED to signify task started
 
     DigiKeyboard.sendKeyStroke(KEY_D, MOD_GUI_LEFT); // Go to desktop

@@ -6,6 +6,7 @@ void setup() {
   pinMode(1, OUTPUT); // LED Setup
 }
 void loop() {
+  DigiKeyboard.sendKeyStroke(KEY_ENTER);
   DigiKeyboard.sendKeyStroke(KEY_D, MOD_GUI_LEFT);
   DigiKeyboard.delay(500);
   digitalWrite(1, HIGH); // Turn on LED to signify task started
