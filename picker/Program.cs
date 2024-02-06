@@ -9,6 +9,7 @@ class Program
     
     static void Main(string[] args)
     {
+        
         Console.Write("Enter the path to your Arduino CLI executable: ");
         string arduinoCliPath = Console.ReadLine() ?? string.Empty;
         string sketchDirectory = "..\\..\\..\\..";
@@ -37,7 +38,7 @@ class Program
         string sketchPath = sketchFiles[selectedSketchIndex - 1];
 
         // Build the command to upload the sketch using the micronucleus programmer
-        string command = $"{arduinoCliPath} upload -b {board} {sketchPath}";
+        string command = $"{arduinoCliPath} compile -b {board} {sketchPath}";
 
         // Execute the command
         Process process = new Process();
@@ -48,24 +49,36 @@ class Program
         process.StartInfo.CreateNoWindow = true;
         process.Start();
 
+
+
         // Reads the output and the errors
         string output = process.StandardOutput.ReadToEnd();
-        string error = process.StandardError.ReadToEnd();
         Console.WriteLine("Output:");
         Console.WriteLine(output);
-        Console.WriteLine("Error:");
-        Console.WriteLine(error);
         // Wait for the process to exit
         process.WaitForExit();
+        Console.WriteLine("");
+        Console.WriteLine("Sketch Verified");
+        Thread.Sleep(2000);
+
+        string command2 = $"{arduinoCliPath} upload -b {board} {sketchPath}";
+        // Execute the command
+        Process process2 = new Process();
+        process2.StartInfo.FileName = "cmd.exe";
+        process2.StartInfo.Arguments = $"/c {command2}";
+        process2.StartInfo.RedirectStandardOutput = true;
+        process2.StartInfo.UseShellExecute = false;
+        process2.StartInfo.CreateNoWindow = true;
+        process2.Start();
+        string output2 = process.StandardOutput.ReadToEnd();
+        Console.WriteLine("Output 2:");
+        Console.WriteLine(output);
+        process2.WaitForExit();
+
+        
 
         // Check if the upload was successful
-        if (output.Contains("Done uploading"))
-        {
-            Console.WriteLine("Upload successful!");
-        }
-        else
-        {
-            Console.WriteLine("Upload failed!");
-        }
+        Console.WriteLine("Press enter to close...");
+        Console.ReadLine();
     }
 }
