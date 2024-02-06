@@ -1,24 +1,23 @@
 ﻿// C# program to upload Digispark sketches using Arduino CLI
 // Lightly Commented!
 using System;
+using System.Configuration.Assemblies;
 using System.Diagnostics;
 using System.IO;
 
 class Program
 {
-    
-    static void Main(string[] args)
+    public void verify(string arduinoCLIPathInput)
     {
-        string arduinoCLIPathInput = "(Empty File)";
-        if (File.Exists("CLIPath.txt"))
+    if (File.Exists("CLIPath.txt"))
         {
-            arduinoCLIPathInput = File.ReadAllText("CLIPath.txt");
-            arduinoCLIPathInput = arduinoCLIPathInput.Replace("\"", "");
-            if (!File.Exists(arduinoCLIPathInput))
-                {
-                    Console.WriteLine("The Arduino CLI executable does not exist at the specified path. Please re-enter.");
-                    arduinoCLIPathInput = @Console.ReadLine() ?? string.Empty;
-                    File.WriteAllText("CLIPath.txt", arduinoCLIPathInput);
+        arduinoCLIPathInput = File.ReadAllText("CLIPath.txt");
+        arduinoCLIPathInput = arduinoCLIPathInput.Replace("\"", "");
+        if (!File.Exists(arduinoCLIPathInput))
+            {
+                Console.WriteLine("The Arduino CLI executable does not exist at the specified path. Please re-enter.");
+                arduinoCLIPathInput = @Console.ReadLine() ?? string.Empty;
+                File.WriteAllText("CLIPath.txt", arduinoCLIPathInput);
                 }
         }
         else
@@ -26,7 +25,16 @@ class Program
             Console.Write("Enter the path to your Arduino CLI executable: ");
             string CLIPathInput = Console.ReadLine() ?? string.Empty;
             File.WriteAllText("CLIPath.txt", CLIPathInput);
+            arduinoCLIPathInput = CLIPathInput.Replace("\"", "");
+            if (File.Exists(arduinoCLIPathInput))
+            {
+                Console.WriteLine("Arduino CLI path accepted.");
+            }
+        else
         }
+    }
+    public static void Main(string[] args)
+    {
         string arduinoCliPath = File.ReadAllText("CLIPath.txt");
         string sketchDirectory = "..\\..\\..\\..";
         string board = "digistump:avr:digispark-tiny";
@@ -40,6 +48,7 @@ class Program
         {
             Console.WriteLine($"{i + 1}. {Path.GetFileNameWithoutExtension(sketchFiles[i])}");
         }
+        Console.WriteLine("");
         Console.WriteLine("Available settings:");
         Console.WriteLine("Change -> Change Arduino CLI Path");
 
