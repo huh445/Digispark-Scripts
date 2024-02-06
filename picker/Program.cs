@@ -40,7 +40,7 @@ class Program
         {
             Console.WriteLine($"{i + 1}. {Path.GetFileNameWithoutExtension(sketchFiles[i])}");
         }
-        Console.WriteLine("Available settings");
+        Console.WriteLine("Available settings:");
         Console.WriteLine("Change -> Change Arduino CLI Path");
 
         // Prompt the user to select a sketch
