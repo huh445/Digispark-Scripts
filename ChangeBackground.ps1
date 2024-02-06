@@ -26,3 +26,4 @@ public class Wallpaper
 Add-Type -TypeDefinition $setwallpapersrc
 
 [Wallpaper]::SetWallpaper($path) # Set the wallpaper
+exit

