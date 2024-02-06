@@ -36,7 +36,7 @@ A release is now planned as the picker is now actually fully built and able to b
 This is good news as it will help to show people who are not as experienced in technology how to use a Digispark.
 The release will most likely be at the end of Febuary 2024
 
-## How to set up the Digispark for use?
+# How to set up the Digispark for use?
 1. Download the Arduino CLI (https://github.com/arduino/arduino-cli)
 2. Open a CMD window
 3. CD to the folder where your Arduino CLI is located

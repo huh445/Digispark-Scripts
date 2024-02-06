@@ -9,9 +9,25 @@ class Program
     
     static void Main(string[] args)
     {
-        
-        Console.Write("Enter the path to your Arduino CLI executable: ");
-        string arduinoCliPath = Console.ReadLine() ?? string.Empty;
+        string arduinoCLIPathInput = "(Empty File)";
+        if (File.Exists("CLIPath.txt"))
+        {
+            arduinoCLIPathInput = File.ReadAllText("CLIPath.txt");
+            arduinoCLIPathInput = arduinoCLIPathInput.Replace("\"", "");
+            if (!File.Exists(arduinoCLIPathInput))
+                {
+                    Console.WriteLine("The Arduino CLI executable does not exist at the specified path. Please re-enter.");
+                    arduinoCLIPathInput = @Console.ReadLine() ?? string.Empty;
+                    File.WriteAllText("CLIPath.txt", arduinoCLIPathInput);
+                }
+        }
+        else
+        {
+            Console.Write("Enter the path to your Arduino CLI executable: ");
+            string CLIPathInput = Console.ReadLine() ?? string.Empty;
+            File.WriteAllText("CLIPath.txt", CLIPathInput);
+        }
+        string arduinoCliPath = File.ReadAllText("CLIPath.txt");
         string sketchDirectory = "..\\..\\..\\..";
         string board = "digistump:avr:digispark-tiny";
         string currentDirectory = Directory.GetCurrentDirectory();
@@ -24,10 +40,20 @@ class Program
         {
             Console.WriteLine($"{i + 1}. {Path.GetFileNameWithoutExtension(sketchFiles[i])}");
         }
+        Console.WriteLine("Available settings");
+        Console.WriteLine("Change -> Change Arduino CLI Path");
 
         // Prompt the user to select a sketch
         Console.Write("Enter the number of the sketch to upload: ");
         string input = Console.ReadLine() ?? string.Empty;
+        if (input.ToLower() == "change")
+        {
+            Console.Write("Enter the path to your Arduino CLI executable: ");
+            string CLIPathInput = Console.ReadLine() ?? string.Empty;
+            File.WriteAllText("CLIPath.txt", CLIPathInput);
+            Console.WriteLine("Path Changed");
+            return;
+        }
         if (!int.TryParse(input, out int selectedSketchIndex) || selectedSketchIndex < 1 || selectedSketchIndex > sketchFiles.Length)
         {
             Console.WriteLine("Invalid input. Exiting...");
