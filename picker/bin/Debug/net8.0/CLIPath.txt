@@ -1,1 +1,1 @@
-wow
+"C:\Users\charc\OneDrive\Desktop\VSC Workplace\Arduino CLI\arduino-cli.exe"
