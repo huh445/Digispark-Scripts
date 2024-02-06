@@ -35,3 +35,13 @@ I find it very funny that the majority of this repository is now C#.
 A release is now planned as the picker is now actually fully built and able to be used.
 This is good news as it will help to show people who are not as experienced in technology how to use a Digispark.
 The release will most likely be at the end of Febuary 2024
+
+## How to set up the Digispark for use?
+1. Download the Arduino CLI (https://github.com/arduino/arduino-cli)
+2. Open a CMD window
+3. CD to the folder where your Arduino CLI is located
+4. Run the command "arduino-cli.exe config init"
+5. Run the command "arduino-cli core update-index --additional-urls https://raw.githubusercontent.com/digistump/arduino-boards-index/master/package_digistump_index.json"
+6. Run the command "arduino-cli.exe core install digistump:avr"
+7. Right click on arduino-cli and Copy As Path
+8. Paste that in when the "picker" program asks for the path.
