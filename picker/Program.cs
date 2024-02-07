@@ -50,8 +50,8 @@ class Program
         }
         Console.WriteLine("");
         Console.WriteLine("Available settings:");
-
         Console.WriteLine("Change -> Change Arduino CLI Path");
+        Console.WriteLine("");
 
         // Prompt the user to select a sketch
         Console.Write("Enter the number of the sketch to upload: ");
@@ -64,9 +64,16 @@ class Program
             Console.WriteLine("Path Changed");
             return;
         }
+        if (string.Equals(input, "exit", StringComparison.OrdinalIgnoreCase))
+        {
+            Console.WriteLine("Exiting...");
+            return;
+        }
         if (!int.TryParse(input, out int selectedSketchIndex) || selectedSketchIndex < 1 || selectedSketchIndex > sketchFiles.Length)
         {
             Console.WriteLine("Invalid input. Exiting...");
+            Console.WriteLine("Press enter to close...");
+            Console.ReadLine();
             return;
         }
 
