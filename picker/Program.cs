@@ -14,7 +14,7 @@ class Program
         {
             arduinoCLIPathInput = File.ReadAllText("CLIPath.txt");
             arduinoCLIPathInput = arduinoCLIPathInput.Replace("\"", "");
-            if (!File.Exists(arduinoCLIPathInput))
+            if (!File.Exists(arduinoCLIPathInput) || !arduinoCLIPathInput.EndsWith("\\arduino-cli.exe"))
             {
                 Console.WriteLine("The Arduino CLI executable does not exist at the specified path. Please re-enter.");
                 arduinoCLIPathInput = Console.ReadLine() ?? string.Empty;
@@ -27,14 +27,20 @@ class Program
             string CLIPathInput = Console.ReadLine() ?? string.Empty;
             File.WriteAllText("CLIPath.txt", CLIPathInput);
             arduinoCLIPathInput = CLIPathInput.Replace("\"", "");
-            if (File.Exists(arduinoCLIPathInput))
+            if (File.Exists(arduinoCLIPathInput) && arduinoCLIPathInput.EndsWith("\\arduino-cli.exe"))
             {
                 Console.WriteLine("Arduino CLI path accepted.");
             }
+            else
+            {
+                Console.WriteLine("The Arduino CLI executable does not exist at the specified path. Please re-enter.");
+                arduinoCLIPathInput = Console.ReadLine() ?? string.Empty;
+                File.WriteAllText("CLIPath.txt", arduinoCLIPathInput);
+            }
+        
         }
         return arduinoCLIPathInput;
     }
-
     static void Main(string[] args)
     {
         string arduinoCliPath = Verify();
@@ -58,22 +64,28 @@ class Program
         string input = Console.ReadLine() ?? string.Empty;
         if (string.Equals(input, "change", StringComparison.OrdinalIgnoreCase))
         {
-            Console.Write("Enter the path to your Arduino CLI executable: ");
-            string CLIPathInput = Console.ReadLine() ?? string.Empty;
-            File.WriteAllText("CLIPath.txt", CLIPathInput);
-            Console.WriteLine("Path Changed");
-            return;
+            string command3 = "del CLIPath.txt";
+            using Process process3 = new();
+            process3.StartInfo.FileName = "cmd.exe";
+            process3.StartInfo.Arguments = $"/c {command3}";
+            process3.StartInfo.UseShellExecute = false;
+            process3.StartInfo.CreateNoWindow = true;
+            process3.Start();
+            Thread.Sleep(2000);
+            arduinoCliPath = Verify();
+            Main(args);
         }
-        if (string.Equals(input, "exit", StringComparison.OrdinalIgnoreCase))
-        {
-            Console.WriteLine("Exiting...");
-            return;
-        }
+
         if (!int.TryParse(input, out int selectedSketchIndex) || selectedSketchIndex < 1 || selectedSketchIndex > sketchFiles.Length)
         {
             Console.WriteLine("Invalid input. Exiting...");
             Console.WriteLine("Press enter to close...");
             Console.ReadLine();
+            return;
+        }
+        else if (string.Equals(input, "exit", StringComparison.OrdinalIgnoreCase))
+        {
+            Console.WriteLine("Exiting...");
             return;
         }
 
