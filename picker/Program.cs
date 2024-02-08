@@ -1,6 +1,7 @@
 ﻿// C# program to upload Digispark sketches using Arduino CLI
 // Lightly Commented!
 using System;
+using System.Collections;
 using System.Diagnostics;
 using System.IO;
 using System.Threading;
@@ -57,6 +58,7 @@ class Program
         Console.WriteLine("");
         Console.WriteLine("Available settings:");
         Console.WriteLine("Change -> Change Arduino CLI Path");
+        Console.WriteLine("Exit -> Exit the application");
         Console.WriteLine("");
 
         // Prompt the user to select a sketch
@@ -79,13 +81,15 @@ class Program
         else if (string.Equals(input, "exit", StringComparison.OrdinalIgnoreCase))
         {
             Console.WriteLine("Exiting...");
-            return;
+            Console.WriteLine("Press enter to close...");
+            Console.ReadLine();
+            System.Environment.Exit(0);
         }
 
         if (!int.TryParse(input, out int selectedSketchIndex) || selectedSketchIndex < 1 || selectedSketchIndex > sketchFiles.Length)
         {
             Console.WriteLine("Invalid input. Exiting...");
-            Console.WriteLine("Press enter to close...");
+            Console.WriteLine("Press enter to close...111");
             Console.ReadLine();
             return;
         }
