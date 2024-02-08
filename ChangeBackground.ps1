@@ -1,6 +1,8 @@
 # Define some objects
 $path = "$env:USERPROFILE\wallpaper.jpg"
-$link = "https://i.ibb.co/jg1v95Y/unnamed.png"
+#$link = "https://i.ibb.co/ZGcnQf7/bliss-update-1.jpg"
+$link = "https://djj.georgia.gov/sites/djj.georgia.gov/files/2020-04/john_edwards2.jpg"
+#$link = "https://tse3.mm.bing.net/th/id/OIG1.msHfXMohVb88y6.zoKRa?pid=ImgGn"
 $client = New-Object System.Net.WebClient
 
 Remove-Item $path -ErrorAction SilentlyContinue # Remove the file if it exists
@@ -26,4 +28,3 @@ public class Wallpaper
 Add-Type -TypeDefinition $setwallpapersrc
 
 [Wallpaper]::SetWallpaper($path) # Set the wallpaper
-exit
