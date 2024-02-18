@@ -38,17 +38,17 @@ class Program
                 arduinoCLIPathInput = Console.ReadLine() ?? string.Empty;
                 File.WriteAllText("CLIPath.txt", arduinoCLIPathInput);
             }
-        
         }
         return arduinoCLIPathInput;
     }
+    
     static void Main(string[] args)
     {
         string arduinoCliPath = Verify();
         string sketchDirectory = "..\\..\\..\\..";
         string board = "digistump:avr:digispark-tiny";
         string[] sketchFiles = Directory.GetFiles(sketchDirectory, "*.ino", SearchOption.AllDirectories);
-
+        Console.WriteLine(arduinoCliPath);
         // Display the list of .ino files to the user
         Console.WriteLine("Available sketches:");
         for (int i = 0; i < sketchFiles.Length; i++)
@@ -59,6 +59,7 @@ class Program
         Console.WriteLine("Available settings:");
         Console.WriteLine("Change -> Change Arduino CLI Path");
         Console.WriteLine("Exit -> Exit the application");
+        Console.WriteLine("Show -> To show the current path to the executable.");
         Console.WriteLine("");
 
         // Prompt the user to select a sketch
@@ -84,6 +85,12 @@ class Program
             Console.WriteLine("Press enter to close...");
             Console.ReadLine();
             System.Environment.Exit(0);
+        }
+
+        else if (string.Equals(input, "show", StringComparison.OrdinalIgnoreCase))
+        {
+            string readText = File.ReadAllText("CLIPath.txt");
+            Console.WriteLine("The current path to the Arduino CLI is: " + readText);
         }
 
         if (!int.TryParse(input, out int selectedSketchIndex) || selectedSketchIndex < 1 || selectedSketchIndex > sketchFiles.Length)
