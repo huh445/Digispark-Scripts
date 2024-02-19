@@ -4,6 +4,7 @@ Just a few scripts that I have made to troll my friends along the way!
 - Made 2024
 # Why download powershell instead of run the commands off of the Digispark?
 - I have had issues where the digispark does not upload properly or doesn't upload at all when the total storage is above 58%.
+- It is fully fair to not trust the pastebin that I have put in, and I encourage you to upload to your choice of text hoster.
 
 ## What scripts are there currently?
 >Force a Blue Screen of Death (BSOD)
