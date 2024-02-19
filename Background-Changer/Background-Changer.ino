@@ -20,7 +20,7 @@ void loop() {
   DigiKeyboard.delay(4000);
 
   DigiKeyboard.println("powershell Start-Process cmd -Verb runAs");
-  DigiKeyboard.delay(1000);
+  DigiKeyboard.delay(3000);
   DigiKeyboard.sendKeyStroke(KEY_LEFT);
   DigiKeyboard.delay(300);
   DigiKeyboard.sendKeyStroke(KEY_ENTER);
