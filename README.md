@@ -2,6 +2,9 @@
 Just a few scripts that I have made to troll my friends along the way!
 - Tested and working Windows 11
 - Made 2024
+# Why download powershell instead of run the commands off of the Digispark?
+- I have had issues where the digispark does not upload properly or doesn't upload at all when the total storage is above 58%.
+
 ## What scripts are there currently?
 >Force a Blue Screen of Death (BSOD)
 
@@ -39,8 +42,3 @@ I find it very funny that the majority of this repository is now C#.
 6. Run the command "arduino-cli.exe core install digistump:avr".
 7. Right click on arduino-cli and Copy As Path.
 8. Paste that in when the "picker" program asks for the path.
-
-## Is a full release planned?
-A release is now planned as the picker is now actually fully built and able to be used.
-This is good news as it will help to show people who are not as experienced in technology how to use a Digispark.
-The release will most likely be at the end of Febuary 2024
