@@ -74,6 +74,7 @@ class Program
             process3.StartInfo.UseShellExecute = false;
             process3.StartInfo.CreateNoWindow = true;
             process3.Start();
+            Console.WriteLine("Waiting...");
             Thread.Sleep(2000);
             arduinoCliPath = Verify();
             Main(args);
@@ -91,14 +92,12 @@ class Program
         {
             string readText = File.ReadAllText("CLIPath.txt");
             Console.WriteLine("The current path to the Arduino CLI is: " + readText);
+            Thread.Sleep(3000);
         }
 
         if (!int.TryParse(input, out int selectedSketchIndex) || selectedSketchIndex < 1 || selectedSketchIndex > sketchFiles.Length)
         {
-            Console.WriteLine("Invalid input. Exiting...");
-            Console.WriteLine("Press enter to close...111");
-            Console.ReadLine();
-            return;
+            Main(args);
         }
 
         // Get the path of the selected sketch
