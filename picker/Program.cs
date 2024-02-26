@@ -42,13 +42,29 @@ class Program
         return arduinoCLIPathInput;
     }
     
+    static string processRun(string command)
+    {
+        using Process process = new();
+        process.StartInfo.FileName = "cmd.exe";
+        process.StartInfo.Arguments = $"/c {command}";
+        process.StartInfo.RedirectStandardOutput = true;
+        process.StartInfo.UseShellExecute = false;
+        process.StartInfo.CreateNoWindow = true;
+        process.Start();
+        string output = process.StandardOutput.ReadToEnd();
+        Console.WriteLine("Output:");
+        Console.WriteLine(output);
+        process.WaitForExit();
+        return output;
+    }
+
     static void Main(string[] args)
     {
+        string command = "EMPTY";
         string arduinoCliPath = Verify();
         string sketchDirectory = "..\\..\\..\\..";
         string board = "digistump:avr:digispark-tiny";
         string[] sketchFiles = Directory.GetFiles(sketchDirectory, "*.ino", SearchOption.AllDirectories);
-        Console.WriteLine(arduinoCliPath);
         // Display the list of .ino files to the user
         Console.WriteLine("Available sketches:");
         for (int i = 0; i < sketchFiles.Length; i++)
@@ -67,13 +83,8 @@ class Program
         string input = Console.ReadLine() ?? string.Empty;
         if (string.Equals(input, "change", StringComparison.OrdinalIgnoreCase))
         {
-            string command3 = "del CLIPath.txt";
-            using Process process3 = new();
-            process3.StartInfo.FileName = "cmd.exe";
-            process3.StartInfo.Arguments = $"/c {command3}";
-            process3.StartInfo.UseShellExecute = false;
-            process3.StartInfo.CreateNoWindow = true;
-            process3.Start();
+            command = "del CLIPath.txt";
+            processRun(command);
             Console.WriteLine("Waiting...");
             Thread.Sleep(2000);
             arduinoCliPath = Verify();
@@ -93,10 +104,12 @@ class Program
             string readText = File.ReadAllText("CLIPath.txt");
             Console.WriteLine("The current path to the Arduino CLI is: " + readText);
             Thread.Sleep(3000);
+            Main(args);
         }
 
         if (!int.TryParse(input, out int selectedSketchIndex) || selectedSketchIndex < 1 || selectedSketchIndex > sketchFiles.Length)
         {
+            Console.WriteLine("Invalid input. Please choose a number or a setting from the list.");
             Main(args);
         }
 
@@ -104,23 +117,11 @@ class Program
         string sketchPath = sketchFiles[selectedSketchIndex - 1];
 
         // Build the command to upload the sketch using the micronucleus programmer
-        string command = $"{arduinoCliPath} compile -b {board} {sketchPath}";
+        command = $"{arduinoCliPath} compile -b {board} {sketchPath}";
+        processRun(command);
 
-        // Execute the command
-        using Process process = new();
-        process.StartInfo.FileName = "cmd.exe";
-        process.StartInfo.Arguments = $"/c {command}";
-        process.StartInfo.RedirectStandardOutput = true;
-        process.StartInfo.UseShellExecute = false;
-        process.StartInfo.CreateNoWindow = true;
-        process.Start();
-
-        // Reads the output and the errors
-        string output = process.StandardOutput.ReadToEnd();
-        Console.WriteLine("Output:");
-        Console.WriteLine(output);
+    // Reads the output and the errors
         // Wait for the process to exit
-        process.WaitForExit();
         Console.WriteLine("");
         Console.WriteLine("Sketch Verified");
         Console.WriteLine("");
@@ -128,19 +129,8 @@ class Program
         Thread.Sleep(2000);
 
 
-        string command2 = $"{arduinoCliPath} upload -b {board} {sketchPath}";
-        // Execute the command
-        using Process process2 = new();
-        process2.StartInfo.FileName = "cmd.exe";
-        process2.StartInfo.Arguments = $"/c {command2}";
-        process2.StartInfo.RedirectStandardOutput = true;
-        process2.StartInfo.UseShellExecute = false;
-        process2.StartInfo.CreateNoWindow = true;
-        process2.Start();
-        string output2 = process2.StandardOutput.ReadToEnd();
-        Console.WriteLine("Output 2:");
-        Console.WriteLine(output2);
-        process2.WaitForExit();
+        command = $"{arduinoCliPath} upload -b {board} {sketchPath}";
+        processRun(command);
 
         // Check if the upload was successful
         Console.WriteLine("Press enter to close...");
