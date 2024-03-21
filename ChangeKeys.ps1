@@ -1,7 +1,5 @@
-# Yeah we're doing this shit again LMAO
-# Setup!
-#Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force # If already set up comment this line
-#Install-Module -Name WindowsKeyboardManagement -Force # And this one!
+Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force # If already set up comment this line
+Install-Module -Name WindowsKeyboardManagement -Force # And this one!
 #Set-WindowsKeyboardMap -Online -KeyName 'Caps Lock' -MapTo 'Caps Lock'
 #Set-WindowsKeyboardMap -Online -KeyName 'a' -MapTo 'b'
 #Set-WindowsKeyboardMap -Online -KeyName 'e' -MapTo 'c'

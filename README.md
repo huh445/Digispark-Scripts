@@ -46,3 +46,7 @@ All scripts below use powershell instead of HID:
 >Change a background to any image
 
 > Change some keybinds
+
+## TODO
+- Change name from picker to uploader.
+- Check latest patch notes for instructions.
