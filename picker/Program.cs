@@ -1,5 +1,6 @@
 ﻿// C# program to upload Digispark sketches using Arduino CLI
 // Lightly Commented!
+// REMOVE THIS BUT FAILSAFE IF ERROR OCCURS DO NOW please
 using System;
 using System.Collections;
 using System.Diagnostics;
@@ -85,7 +86,7 @@ class Program
         {
             command = "del CLIPath.txt";
             processRun(command);
-            Console.WriteLine("Waiting...");
+            Console.WriteLine("Please Wait...");
             Thread.Sleep(2000);
             arduinoCliPath = Verify();
             Main(args);
@@ -93,9 +94,9 @@ class Program
 
         else if (string.Equals(input, "exit", StringComparison.OrdinalIgnoreCase))
         {
-            Console.WriteLine("Exiting...");
             Console.WriteLine("Press enter to close...");
             Console.ReadLine();
+            Console.WriteLine("Exiting...");
             System.Environment.Exit(0);
         }
 
@@ -122,6 +123,7 @@ class Program
 
     // Reads the output and the errors
         // Wait for the process to exit
+        Console.Clear();
         Console.WriteLine("");
         Console.WriteLine("Sketch Verified");
         Console.WriteLine("");
