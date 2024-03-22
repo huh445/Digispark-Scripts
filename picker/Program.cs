@@ -131,13 +131,15 @@ class Program
         // Get the path of the selected sketch
         string sketchPath = sketchFiles[selectedSketchIndex - 1];
 
+        Console.Clear();
+
         // Build the command to upload the sketch using the micronucleus programmer
         command = $"{arduinoCliPath} compile -b {board} {sketchPath}";
         processRun(command);
 
     // Reads the output and the errors
         // Wait for the process to exit
-        Console.Clear();
+        Thread.Sleep(1000);
         Console.WriteLine("");
         Console.WriteLine("Sketch Verified");
         Console.WriteLine("");
