@@ -65,6 +65,7 @@ class Program
         string arduinoCliPath = Verify();
         string sketchDirectory = "..\\..\\..\\..";
         string board = "digistump:avr:digispark-tiny";
+        string readText = File.ReadAllText("CLIPath.txt");
         string[] sketchFiles = Directory.GetFiles(sketchDirectory, "*.ino", SearchOption.AllDirectories);
         // Display the list of .ino files to the user
         Console.WriteLine("Available sketches:");
@@ -84,12 +85,24 @@ class Program
         string input = Console.ReadLine() ?? string.Empty;
         if (string.Equals(input, "change", StringComparison.OrdinalIgnoreCase))
         {
+            Console.WriteLine("The current path to the Arduino CLI is: " + readText);
+            Console.Write("Is this the correct path? (Y/N) ");
+            string response = Console.ReadLine() ?? string.Empty;
+            if (string.Equals(response, "Y", StringComparison.OrdinalIgnoreCase))
+            {
+                Console.Clear();
+                Main(args);
+            }
+            else
+            {
             command = "del CLIPath.txt";
             processRun(command);
             Console.WriteLine("Please Wait...");
             Thread.Sleep(2000);
             arduinoCliPath = Verify();
+            Console.Clear();
             Main(args);
+            }
         }
 
         else if (string.Equals(input, "exit", StringComparison.OrdinalIgnoreCase))
@@ -102,9 +115,10 @@ class Program
 
         else if (string.Equals(input, "show", StringComparison.OrdinalIgnoreCase))
         {
-            string readText = File.ReadAllText("CLIPath.txt");
+            Console.Clear();
             Console.WriteLine("The current path to the Arduino CLI is: " + readText);
             Thread.Sleep(3000);
+            Console.WriteLine("");
             Main(args);
         }
 
@@ -128,6 +142,7 @@ class Program
         Console.WriteLine("Sketch Verified");
         Console.WriteLine("");
         Console.WriteLine("Plug in Digispark now! (will timeout in 60 seconds)");
+        Console.WriteLine("");
         Thread.Sleep(2000);
 
 
