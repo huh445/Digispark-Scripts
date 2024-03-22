@@ -35,7 +35,8 @@ If there are any issues, feel free to contact me at contact@discok.org
 Just a few scripts that I have made to troll my friends along the way!
 - Tested and working Windows 11
 - Made 2024
-# Why download powershell instead of run the commands off of the Digispark?
+- The powershell ones are not commented because of storage contstraints.
+## Why download powershell instead of run the commands off of the Digispark?
 - I have had issues where the digispark does not upload properly or doesn't upload at all when the total storage is above 58%.
 - It is fully fair to not trust the pastebin that I have put in, and I encourage you to upload to your choice of text hoster.
 
