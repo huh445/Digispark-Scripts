@@ -68,6 +68,10 @@ class Program
         string readText = File.ReadAllText("CLIPath.txt");
         string[] sketchFiles = Directory.GetFiles(sketchDirectory, "*.ino", SearchOption.AllDirectories);
         // Display the list of .ino files to the user
+        command = $"{arduinoCliPath} core list";
+        processRun(command);
+        Thread.Sleep(2000);
+        Console.Clear();
         Console.WriteLine("Available sketches:");
         for (int i = 0; i < sketchFiles.Length; i++)
         {
