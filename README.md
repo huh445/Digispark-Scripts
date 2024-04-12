@@ -6,10 +6,11 @@ e.g. - This would be bad: "C:/Arduino CLI/arduino-cli.exe"
 2. Open a CMD window.
 3. CD to the folder where your Arduino CLI is located.
 4. Run the command 
->"arduino-cli.exe config init".
+>arduino-cli.exe config init
 5. Run the command 
->"arduino-cli core config add board_manager.additional_urls https://raw.githubusercontent.com/digistump/arduino-boards-index/master/package_digistump_index.json"
-6. Run the command "arduino-cli.exe core install digistump:avr".
+>arduino-cli core config add board_manager.additional_urls https://raw.githubusercontent.com/digistump/arduino-boards-index/master/package_digistump_index.json
+6. Run the command 
+>arduino-cli.exe core install digistump:avr
 7. Right click on arduino-cli and Copy As Path.
 8. Paste that in when the "picker" program asks for the path.
 
