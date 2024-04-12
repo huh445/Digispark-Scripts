@@ -8,19 +8,19 @@
     "net8.0": []
   },
   "packageFolders": {
-    "C:\\Users\\charc\\.nuget\\packages\\": {}
+    "C:\\Users\\Charlie\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\charc\\OneDrive\\Documents\\GitHub\\Digispark-Scripts\\picker\\picker.csproj",
+      "projectUniqueName": "C:\\Users\\Charlie\\Documents\\GitHub\\Digispark-Scripts\\picker\\picker.csproj",
       "projectName": "picker",
-      "projectPath": "C:\\Users\\charc\\OneDrive\\Documents\\GitHub\\Digispark-Scripts\\picker\\picker.csproj",
-      "packagesPath": "C:\\Users\\charc\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\charc\\OneDrive\\Documents\\GitHub\\Digispark-Scripts\\picker\\obj\\",
+      "projectPath": "C:\\Users\\Charlie\\Documents\\GitHub\\Digispark-Scripts\\picker\\picker.csproj",
+      "packagesPath": "C:\\Users\\Charlie\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Charlie\\Documents\\GitHub\\Digispark-Scripts\\picker\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\charc\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\Charlie\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -38,6 +38,11 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -59,7 +64,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.103/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
