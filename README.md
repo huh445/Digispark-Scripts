@@ -8,7 +8,7 @@ e.g. - This would be bad: "C:/Arduino CLI/arduino-cli.exe"
 4. Run the command 
 >arduino-cli.exe config init
 5. Run the command 
->arduino-cli core config add board_manager.additional_urls https://raw.githubusercontent.com/digistump/arduino-boards-index/master/package_digistump_index.json
+>arduino-cli.exe core config add board_manager.additional_urls https://raw.githubusercontent.com/digistump/arduino-boards-index/master/package_digistump_index.json
 6. Run the command 
 >arduino-cli.exe core install digistump:avr
 7. Right click on arduino-cli and Copy As Path.
