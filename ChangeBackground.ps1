@@ -9,7 +9,7 @@ Remove-Item $path -ErrorAction SilentlyContinue # Remove the file if it exists
 
 $client.DownloadFile($link, $path) # Download the file
 
-$setwallpapersrc = @"
+$setwallpapersrc = @"..
 using System.Runtime.InteropServices;
 
 public class Wallpaper
