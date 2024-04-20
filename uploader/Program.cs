@@ -1,4 +1,4 @@
-﻿// C# program to upload Digispark sketches using Arduino CLI
+﻿﻿// C# program to upload Digispark sketches using Arduino CLI
 // Lightly Commented!
 // REMOVE THIS BUT FAILSAFE IF ERROR OCCURS DO NOW please
 using System;
@@ -12,6 +12,7 @@ class Program
     static string Verify()
     {
         string arduinoCLIPathInput = "(Blank Input)";
+        string command = "EMPTY";
         if (File.Exists("CLIPath.txt"))
         {
             arduinoCLIPathInput = File.ReadAllText("CLIPath.txt");
@@ -19,8 +20,12 @@ class Program
             if (!File.Exists(arduinoCLIPathInput) || !arduinoCLIPathInput.EndsWith("\\arduino-cli.exe"))
             {
                 Console.WriteLine("The Arduino CLI executable does not exist at the specified path. Please re-enter.");
-                arduinoCLIPathInput = Console.ReadLine() ?? string.Empty;
-                File.WriteAllText("CLIPath.txt", arduinoCLIPathInput);
+                command = "del CLIPath.txt";
+                processRun(command);
+                Console.WriteLine("Please Wait...");
+                Thread.Sleep(2000);
+                Verify();
+                Console.Clear();
             }
         }
         else
@@ -36,8 +41,12 @@ class Program
             else
             {
                 Console.WriteLine("The Arduino CLI executable does not exist at the specified path. Please re-enter.");
-                arduinoCLIPathInput = Console.ReadLine() ?? string.Empty;
-                File.WriteAllText("CLIPath.txt", arduinoCLIPathInput);
+                command = "del CLIPath.txt";
+                processRun(command);
+                Console.WriteLine("Please Wait...");
+                Thread.Sleep(2000);
+                Verify();
+                Console.Clear();
             }
         }
         return arduinoCLIPathInput;
