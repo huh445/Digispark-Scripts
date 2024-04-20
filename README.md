@@ -2,7 +2,7 @@
 
 ## How do you set up the Digispark ATTINY85 for use with this program?
 1. Run the Uploader. It automatically installs if you select "y"
-2. If you accidentally select "n", delete "Install-Script2.huh445".
+2. If you accidentally select "n", delete "Install-Script2.huh445" in "Digispark-Scripts/picker/bin/Debug/net8.0/".
 
 ## How to use the picker?
 1. Go to "Digispark-Scripts/picker/bin/Debug/net8.0/picker.exe"
