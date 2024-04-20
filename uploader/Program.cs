@@ -6,13 +6,13 @@ using System.Collections;
 using System.Diagnostics;
 using System.IO;
 using System.Threading;
-
+using System.Xml;
 class Program
-{
-    static string Verify()
+{    static string Verify()
     {
         string arduinoCLIPathInput = "(Blank Input)";
         string command = "EMPTY";
+
         if (File.Exists("CLIPath.txt"))
         {
             arduinoCLIPathInput = File.ReadAllText("CLIPath.txt");
@@ -36,7 +36,35 @@ class Program
             arduinoCLIPathInput = CLIPathInput.Replace("\"", "");
             if (File.Exists(arduinoCLIPathInput) && arduinoCLIPathInput.EndsWith("\\arduino-cli.exe"))
             {
-                Console.WriteLine("Arduino CLI path accepted.");
+                string arduinoCliPath = arduinoCLIPathInput;
+                command = $"{arduinoCliPath} core list";
+                string output = processRun(command);
+                string specificLine = "digistump:avr 1.6.7     1.6.7  Digistump AVR Boards";
+                string[] lines = output.Split(new[] { Environment.NewLine}, StringSplitOptions.None);
+                bool containsDigispark = false;
+                foreach (string line in lines)
+                {
+                    if (line.Contains(specificLine))
+                    {
+                        containsDigispark = true;
+                    }
+                }
+
+                if (containsDigispark == false)
+                {
+                    Console.WriteLine("Your Arduino-CLI seems to have something wrong with it.");
+                    Thread.Sleep(500);
+                    Console.WriteLine("Make sure that you have the correct location of the executable");
+                    Thread.Sleep(500);
+                    Console.WriteLine("Alternatively, make sure that you installed Digispark correctly");
+                    Thread.Sleep(500);
+                    Console.WriteLine("Press enter to exit...");
+                    command = "del CLIPath.txt";
+                    processRun(command);
+                    Console.ReadLine();
+                    System.Environment.Exit(0);
+                }
+
             }
             else
             {
@@ -77,11 +105,7 @@ class Program
         string readText = File.ReadAllText("CLIPath.txt");
         string[] sketchFiles = Directory.GetFiles(sketchDirectory, "*.ino", SearchOption.AllDirectories);
         // Display the list of .ino files to the user
-        command = $"{arduinoCliPath} core list";
-        processRun(command);
         Thread.Sleep(2000);
-        Console.Clear();
-        Console.WriteLine("Available sketches:");
         for (int i = 0; i < sketchFiles.Length; i++)
         {
             Console.WriteLine($"{i + 1}. {Path.GetFileNameWithoutExtension(sketchFiles[i])}");
@@ -129,6 +153,7 @@ class Program
         else if (string.Equals(input, "show", StringComparison.OrdinalIgnoreCase))
         {
             Console.Clear();
+            readText = File.ReadAllText("CLIPath.txt");
             Console.WriteLine("The current path to the Arduino CLI is: " + readText);
             Thread.Sleep(3000);
             Console.WriteLine("");
@@ -159,7 +184,6 @@ class Program
         Console.WriteLine("Plug in Digispark now! (will timeout in 60 seconds)");
         Console.WriteLine("");
         Thread.Sleep(2000);
-
 
         command = $"{arduinoCliPath} upload -b {board} {sketchPath}";
         processRun(command);
