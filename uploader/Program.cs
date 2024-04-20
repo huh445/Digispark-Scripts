@@ -1,19 +1,8 @@
 ﻿﻿// C# program to upload Digispark sketches using Arduino CLI
 // Lightly Commented!
 // REMOVE THIS BUT FAILSAFE IF ERROR OCCURS DO NOW please
-using System;
-using System.Collections;
-using System.Data;
 using System.Diagnostics;
-using System.IO;
-using System.Net;
-using System.Threading;
-using System.Xml;
-using System.Net.Http;
-using System.Threading.Tasks;
 using System.IO.Compression;
-using System.Runtime.CompilerServices;
-using Microsoft.VisualBasic;
 class Program
 {    static string Verify()
     {
