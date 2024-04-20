@@ -1,18 +1,8 @@
 # How to use?
 
 ## How do you set up the Digispark ATTINY85 for use with this program?
-1. Download the Arduino CLI (https://github.com/arduino/arduino-cli) Make sure the location doesn't have a space.
-e.g. - This would be bad: "C:/Arduino CLI/arduino-cli.exe"
-2. Open a CMD window.
-3. CD to the folder where your Arduino CLI is located.
-4. Run the command 
->arduino-cli.exe config init
-5. Run the command 
->arduino-cli.exe config add board_manager.additional_urls https://raw.githubusercontent.com/digistump/arduino-boards-index/master/package_digistump_index.json
-6. Run the command 
->arduino-cli.exe core install digistump:avr
-7. Right click on arduino-cli and Copy As Path.
-8. Paste that in when the "picker" program asks for the path.
+1. Run the Uploader. It automatically installs if you select "y"
+2. If you accidentally select "n", delete "Install-Script2.huh445".
 
 ## How to use the picker?
 1. Go to "Digispark-Scripts/picker/bin/Debug/net8.0/picker.exe"
@@ -52,5 +42,24 @@ All scripts below use powershell instead of HID:
 > Change some keybinds
 
 ## TODO
-- Change name from picker to uploader.
-- Check latest patch notes for instructions.
+- idk now that i have created and installer file.
+
+## old tutorial if you dont trust me
+
+    Download the Arduino CLI (https://github.com/arduino/arduino-cli) Make sure the location doesn't have a space. e.g. - This would be bad: "C:/Arduino CLI/arduino-cli.exe"
+    Open a CMD window.
+    CD to the folder where your Arduino CLI is located.
+    Run the command
+
+    arduino-cli.exe config init
+
+    Run the command
+
+    arduino-cli.exe config add board_manager.additional_urls https://raw.githubusercontent.com/digistump/arduino-boards-index/master/package_digistump_index.json
+
+    Run the command
+
+    arduino-cli.exe core install digistump:avr
+
+    Right click on arduino-cli and Copy As Path.
+    Paste that in when the "picker" program asks for the path.
