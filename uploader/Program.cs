@@ -99,10 +99,8 @@ class Program
             try
             {
                 Console.WriteLine("Downloading Arduino-CLI...");
-                
                 HttpResponseMessage response = await httpClient.GetAsync(url);
                 response.EnsureSuccessStatusCode();
-
                 using (Stream contentStream = await response.Content.ReadAsStreamAsync())
                 {
                     using (FileStream fileStream = new FileStream(downloadPath, FileMode.Create, FileAccess.Write, FileShare.None))
@@ -112,18 +110,14 @@ class Program
                 }
                 Console.WriteLine("Download completed successfully.");
             }
-
             catch (HttpRequestException ex)
             {
                     Console.WriteLine($"HTTP request error: {ex.Message}");
             }
-            
             catch (Exception ex)
             {
                 Console.WriteLine($"Error downloading file: {ex.Message}");
             }
-
-
         }
         string extractPath = Path.Combine(documentsPath, "Arduino-CLI");
         string zipFilePath = downloadPath;
