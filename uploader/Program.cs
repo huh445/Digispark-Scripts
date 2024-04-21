@@ -281,7 +281,7 @@ class Program
             if (File.Exists("Install-Script2.huh445"))
             {
                 File.Delete("Install-Script2.huh445");
-                Console.WriteLine("Install Script.huh445 has been deleted");
+                Console.WriteLine("Install Script2.huh445 has been deleted");
                 Thread.Sleep(500);
             }
             if (File.Exists("CLIPath.txt"))
