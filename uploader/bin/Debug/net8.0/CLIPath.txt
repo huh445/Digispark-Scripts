@@ -1,1 +1,0 @@
-"C:\Users\charc\OneDrive\Documents\Arduino-CLI\arduino-cli.exe"

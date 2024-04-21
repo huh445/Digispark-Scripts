@@ -1,8 +1,8 @@
-﻿﻿// C# program to upload Digispark sketches using Arduino CLI
+﻿// C# program to upload Digispark sketches using Arduino CLI
 // Lightly Commented!
-// REMOVE THIS BUT FAILSAFE IF ERROR OCCURS DO NOW please
 using System.Diagnostics;
 using System.IO.Compression;
+using System.Reflection;
 class Program
 {    static string Verify()
     {
@@ -143,9 +143,14 @@ class Program
         {
             Console.WriteLine($"Error extracting zip file: {ex.Message}");
         }
-        string command = "arduino-cli.exe config init";
+        string command = $"cd {extractPath}";
         string output = ProcessRun(command);
         Console.WriteLine(output);
+        Thread.Sleep(500);
+        command = "arduino-cli.exe config init";
+        output = ProcessRun(command);
+        Console.WriteLine(output);
+        Console.WriteLine("Directory Initialised");
         Thread.Sleep(500);
         Console.WriteLine("Successfully Initialised Arduino-CLI");
         Thread.Sleep(200);
@@ -251,7 +256,7 @@ class Program
             Console.WriteLine("Press enter to close...");
             Console.ReadLine();
             Console.WriteLine("Exiting...");
-            System.Environment.Exit(0);
+            Environment.Exit(0);
         }
 
         else if (string.Equals(input, "show", StringComparison.OrdinalIgnoreCase))
@@ -262,6 +267,49 @@ class Program
             Thread.Sleep(3000);
             Console.WriteLine("");
             Main(args);
+        }
+
+        else if (string.Equals(input, "del", StringComparison.OrdinalIgnoreCase))
+        {
+            try{
+            if (File.Exists("Install-Script.huh445"))
+            {
+                File.Delete("Install-Script.huh445");
+                Console.WriteLine("Install-Script.huh445 has been deleted");
+                Thread.Sleep(500);
+            }
+            if (File.Exists("Install-Script2.huh445"))
+            {
+                File.Delete("Install-Script2.huh445");
+                Console.WriteLine("Install Script.huh445 has been deleted");
+                Thread.Sleep(500);
+            }
+            if (File.Exists("CLIPath.txt"))
+            {
+                File.Delete("CLIPath.txt");
+                Console.WriteLine("CLIPath.txt has been deleted");
+                Thread.Sleep(500);
+            }
+            if (Directory.Exists(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Arduino-CLI")))
+            {
+                Directory.Delete(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Arduino-CLI"), true);
+                Console.WriteLine("Arduino-CLI in documents deleted");
+                Thread.Sleep(500);
+            }
+            if (File.Exists(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Arduino-CLI.zip")))
+            {
+                File.Delete(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Arduino-CLI.zip"));
+                Console.WriteLine("Arduino-CLI.zip in documents deleted");
+                Thread.Sleep(500);
+            }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+            }
+            Console.WriteLine("Press Enter to exit...");
+            Console.ReadLine();
+            Environment.Exit(0);
         }
 
         if (!int.TryParse(input, out int selectedSketchIndex) || selectedSketchIndex < 1 || selectedSketchIndex > sketchFiles.Length)
