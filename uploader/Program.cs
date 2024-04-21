@@ -190,7 +190,7 @@ class Program
         {
         if (!File.Exists("Install-Script2.huh445"))
         {
-            Console.WriteLine("Would you like to install Arduino-CLI? (Y/N)");
+            Console.Write("Would you like to install Arduino-CLI? (Y/N) ");
             string installInput = Console.ReadLine() ?? string.Empty;
             if (string.Equals(installInput, "y", StringComparison.OrdinalIgnoreCase))
             {
