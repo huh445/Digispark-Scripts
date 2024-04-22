@@ -143,6 +143,7 @@ class Program
         {
             Console.WriteLine($"Error extracting zip file: {ex.Message}");
         }
+        try{
         string command = $"cd {extractPath}";
         string output = ProcessRun(command);
         Console.WriteLine(output);
@@ -150,7 +151,6 @@ class Program
         command = "arduino-cli.exe config init";
         output = ProcessRun(command);
         Console.WriteLine(output);
-        Console.WriteLine("Directory Initialised");
         Thread.Sleep(500);
         Console.WriteLine("Successfully Initialised Arduino-CLI");
         Thread.Sleep(200);
@@ -163,6 +163,11 @@ class Program
         Console.WriteLine(output);
         Thread.Sleep(500);
         Console.WriteLine("Successfully installed Arduino-CLI");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error installing Arduino-CLI: {ex.Message}");
+        }
         Console.WriteLine("Press enter to continue...");
         Console.ReadLine();
         return;
