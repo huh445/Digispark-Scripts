@@ -144,21 +144,19 @@ class Program
             Console.WriteLine($"Error extracting zip file: {ex.Message}");
         }
         try{
-        string command = $"cd {extractPath}";
-        string output = ProcessRun(command);
-        Console.WriteLine(output);
+        string ArduinoCLIPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Arduino-CLI\\arduino-cli.exe");
         Thread.Sleep(500);
-        command = "arduino-cli.exe config init";
-        output = ProcessRun(command);
+        string command = $"{ArduinoCLIPath} config init";
+        string output = ProcessRun(command);
         Console.WriteLine(output);
         Thread.Sleep(500);
         Console.WriteLine("Successfully Initialised Arduino-CLI");
         Thread.Sleep(200);
-        command = "arduino-cli.exe config add board_manager.additional_urls https://raw.githubusercontent.com/digistump/arduino-boards-index/master/package_digistump_index.json";
+        command = $"{ArduinoCLIPath} config add board_manager.additional_urls https://raw.githubusercontent.com/digistump/arduino-boards-index/master/package_digistump_index.json";
         output = ProcessRun(command);
         Thread.Sleep(500);
         Console.WriteLine(output);
-        command = "arduino-cli.exe core install digistump:avr";
+        command = $"{ArduinoCLIPath} core install digistump:avr";
         output = ProcessRun(command);
         Console.WriteLine(output);
         Thread.Sleep(500);
@@ -180,10 +178,9 @@ class Program
         process.StartInfo.Arguments = $"/c {command}";
         process.StartInfo.RedirectStandardOutput = true;
         process.StartInfo.UseShellExecute = false;
-        process.StartInfo.CreateNoWindow = true;
+        process.StartInfo.CreateNoWindow = false;
         process.Start();
         string output = process.StandardOutput.ReadToEnd();
-        Console.WriteLine("Output:");
         Console.WriteLine(output);
         process.WaitForExit();
         return output;
@@ -211,6 +208,13 @@ class Program
             }
         }
         }
+        if (!File.Exists("CLIPath.txt"))
+        {
+            if (File.Exists("Install-Script2.huh445"))
+            {
+                File.WriteAllText("CLIPath.txt", Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Arduino-CLI\\arduino-cli.exe"));
+            }
+        }
         string arduinoCliPath = Verify();
         string command = "EMPTY";
         
@@ -229,6 +233,8 @@ class Program
         Console.WriteLine("Change -> Change Arduino CLI Path");
         Console.WriteLine("Exit -> Exit the application");
         Console.WriteLine("Show -> To show the current path to the executable.");
+        Console.WriteLine("Del -> (dev command to reset installation)");
+        Console.WriteLine("Check -> Check if your Arduino is configured correctly");
         Console.WriteLine("");
 
         // Prompt the user to select a sketch
@@ -272,6 +278,36 @@ class Program
             Thread.Sleep(3000);
             Console.WriteLine("");
             Main(args);
+        }
+
+        else if (string.Equals(input, "check", StringComparison.OrdinalIgnoreCase))
+        {
+            command = $"{arduinoCliPath} core list";
+            string output2 = ProcessRun(command);
+            string specificLine = "digistump:avr 1.6.7     1.6.7  Digistump AVR Boards";
+            string[] lines = output2.Split(new[] { Environment.NewLine}, StringSplitOptions.None);
+            bool containsDigispark = false;
+            foreach (string line in lines)
+            {
+                if (line.Contains(specificLine))
+                {
+                    containsDigispark = true;
+                }
+                }
+            if (containsDigispark == false)
+                {
+                    Console.WriteLine("Your Arduino-CLI seems to have something wrong with it.");
+                    Thread.Sleep(500);
+                    Console.WriteLine("Make sure that you have the correct location of the executable");
+                    Thread.Sleep(500);
+                    Console.WriteLine("Alternatively, make sure that you installed Digispark correctly");
+                    Thread.Sleep(500);
+                    Console.WriteLine("Press enter to exit...");
+                    command = "del CLIPath.txt";
+                    ProcessRun(command);
+                    Console.ReadLine();
+                    System.Environment.Exit(0);
+                }
         }
 
         else if (string.Equals(input, "del", StringComparison.OrdinalIgnoreCase))
