@@ -154,7 +154,7 @@ class Program
         Thread.Sleep(200);
         command = $"{ArduinoCLIPath} config add board_manager.additional_urls https://raw.githubusercontent.com/digistump/arduino-boards-index/master/package_digistump_index.json";
         output = ProcessRun(command);
-        Thread.Sleep(500);
+        Thread.Sleep(10000);
         Console.WriteLine(output);
         command = $"{ArduinoCLIPath} core install digistump:avr";
         output = ProcessRun(command);
@@ -165,6 +165,15 @@ class Program
         catch (Exception ex)
         {
             Console.WriteLine($"Error installing Arduino-CLI: {ex.Message}");
+        }
+        try{
+        File.Delete(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Arduino-CLI.zip"));
+        Console.WriteLine("Arduino-CLI.zip in documents deleted");
+        Thread.Sleep(500);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error deleting Arduino-CLI.zip {ex.Message}");
         }
         Console.WriteLine("Press enter to continue...");
         Console.ReadLine();
@@ -335,12 +344,6 @@ class Program
             {
                 Directory.Delete(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Arduino-CLI"), true);
                 Console.WriteLine("Arduino-CLI in documents deleted");
-                Thread.Sleep(500);
-            }
-            if (File.Exists(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Arduino-CLI.zip")))
-            {
-                File.Delete(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Arduino-CLI.zip"));
-                Console.WriteLine("Arduino-CLI.zip in documents deleted");
                 Thread.Sleep(500);
             }
             }
