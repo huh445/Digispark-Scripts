@@ -48,6 +48,11 @@ class Program
 
                 if (containsDigispark == false)
                 {
+                    File.Delete("CLIPath.txt");
+                    if (Directory.Exists(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Arduino-CLI")))
+                    {
+                        Directory.Delete(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Arduino-CLI"));
+                    }
                     Console.WriteLine("Your Arduino-CLI seems to have something wrong with it.");
                     Thread.Sleep(500);
                     Console.WriteLine("Make sure that you have the correct location of the executable");
@@ -55,8 +60,6 @@ class Program
                     Console.WriteLine("Alternatively, make sure that you installed Digispark correctly");
                     Thread.Sleep(500);
                     Console.WriteLine("Press enter to exit...");
-                    command = "del CLIPath.txt";
-                    ProcessRun(command);
                     Console.ReadLine();
                     System.Environment.Exit(0);
                 }
@@ -214,6 +217,10 @@ class Program
             {
                 Console.Clear();
                 File.Create("Install-Script.huh445");
+            }
+            if (File.Exists(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Arduino-CLI")))
+            {
+                File.WriteAllText("CLIPath.txt", Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Arduino-CLI\\arduino-cli.exe"));
             }
         }
         }
