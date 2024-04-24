@@ -47,10 +47,7 @@ class Program
                 if (containsDigispark == false)
                 {
                     File.Delete("CLIPath.txt");
-                    if (Directory.Exists(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Arduino-CLI")))
-                    {
-                        Directory.Delete(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Arduino-CLI"), true);
-                    }
+                    if (Directory.Exists(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Arduino-CLI"))) {Directory.Delete(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Arduino-CLI"), true);}
                     Console.WriteLine("Your Arduino-CLI seems to have something wrong with it.");
                     Thread.Sleep(500);
                     Console.WriteLine("Make sure that you have the correct location of the executable");
@@ -59,13 +56,20 @@ class Program
                     Thread.Sleep(500);
                     Console.WriteLine("Press enter to exit...");
                     Console.ReadLine();
-                    System.Environment.Exit(0);
+                    Environment.Exit(0);
                 }
 
             }
             else
             {
-                Console.WriteLine("The Arduino CLI executable does not exist at the specified path. Please re-enter.");
+                Console.WriteLine("The Arduino CLI executable does not exist at the specified path. \nWould you like to automatically install Arduino-CLI (Y/N)?");
+                string input = Console.ReadLine() ?? string.Empty;
+                if (string.Equals(input, "y", StringComparison.OrdinalIgnoreCase))
+                {
+                    if (File.Exists("CLIPath.txt")) {File.Delete("CLIPath.txt");}
+                    if (File.Exists("Install-Script.huh445")) {File.Delete("Install-Script.huh445");}
+                    if (File.Exists("Install-Script2.huh445")) {File.Delete("InstallScript2.huh445");}
+                }
                 File.Delete("CLIPath.txt");
                 Console.WriteLine("Please Wait...");
                 Thread.Sleep(2000);
