@@ -2,7 +2,6 @@
 // Lightly Commented!
 using System.Diagnostics;
 using System.IO.Compression;
-using System.Reflection;
 class Program
 {    static string Verify()
     {
@@ -21,7 +20,6 @@ class Program
                 Console.WriteLine("Please Wait...");
                 Thread.Sleep(2000);
                 Verify();
-                Console.Clear();
             }
         }
         else
@@ -51,7 +49,7 @@ class Program
                     File.Delete("CLIPath.txt");
                     if (Directory.Exists(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Arduino-CLI")))
                     {
-                        Directory.Delete(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Arduino-CLI"));
+                        Directory.Delete(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Arduino-CLI"), true);
                     }
                     Console.WriteLine("Your Arduino-CLI seems to have something wrong with it.");
                     Thread.Sleep(500);
@@ -68,12 +66,10 @@ class Program
             else
             {
                 Console.WriteLine("The Arduino CLI executable does not exist at the specified path. Please re-enter.");
-                command = "del CLIPath.txt";
-                ProcessRun(command);
+                File.Delete("CLIPath.txt");
                 Console.WriteLine("Please Wait...");
                 Thread.Sleep(2000);
                 Verify();
-                Console.Clear();
             }
         }
         return arduinoCLIPathInput;
@@ -146,33 +142,35 @@ class Program
         {
             Console.WriteLine($"Error extracting zip file: {ex.Message}");
         }
-        try{
-        string ArduinoCLIPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Arduino-CLI\\arduino-cli.exe");
-        Thread.Sleep(500);
-        string command = $"{ArduinoCLIPath} config init";
-        string output = ProcessRun(command);
-        Console.WriteLine(output);
-        Thread.Sleep(500);
-        Console.WriteLine("Successfully Initialised Arduino-CLI");
-        Thread.Sleep(200);
-        command = $"{ArduinoCLIPath} config add board_manager.additional_urls https://raw.githubusercontent.com/digistump/arduino-boards-index/master/package_digistump_index.json";
-        output = ProcessRun(command);
-        Thread.Sleep(10000);
-        Console.WriteLine(output);
-        command = $"{ArduinoCLIPath} core install digistump:avr";
-        output = ProcessRun(command);
-        Console.WriteLine(output);
-        Thread.Sleep(500);
-        Console.WriteLine("Successfully installed Arduino-CLI");
+        try
+        {
+            string ArduinoCLIPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Arduino-CLI\\arduino-cli.exe");
+            Thread.Sleep(500);
+            string command = $"{ArduinoCLIPath} config init";
+            string output = ProcessRun(command);
+            Console.WriteLine(output);
+            Thread.Sleep(500);
+            Console.WriteLine("Successfully Initialised Arduino-CLI");
+            Thread.Sleep(200);
+            command = $"{ArduinoCLIPath} config add board_manager.additional_urls https://raw.githubusercontent.com/digistump/arduino-boards-index/master/package_digistump_index.json";
+            output = ProcessRun(command);
+            Thread.Sleep(10000);
+            Console.WriteLine(output);
+            command = $"{ArduinoCLIPath} core install digistump:avr";
+            output = ProcessRun(command);
+            Console.WriteLine(output);
+            Thread.Sleep(500);
+            Console.WriteLine("Successfully installed Arduino-CLI");
         }
         catch (Exception ex)
         {
             Console.WriteLine($"Error installing Arduino-CLI: {ex.Message}");
         }
-        try{
-        File.Delete(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Arduino-CLI.zip"));
-        Console.WriteLine("Arduino-CLI.zip in documents deleted");
-        Thread.Sleep(500);
+        try
+        {
+            File.Delete(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Arduino-CLI.zip"));
+            Console.WriteLine("Arduino-CLI.zip in documents deleted");
+            Thread.Sleep(500);
         }
         catch (Exception ex)
         {
@@ -202,34 +200,41 @@ class Program
     {
         if (!File.Exists("Install-Script.huh445"))
         {
-        if (!File.Exists("Install-Script2.huh445"))
-        {
-            Console.Write("Would you like to install Arduino-CLI? (Y/N) ");
-            string installInput = Console.ReadLine() ?? string.Empty;
-            if (string.Equals(installInput, "y", StringComparison.OrdinalIgnoreCase))
+            if (!File.Exists("Install-Script2.huh445"))
             {
-                Install();
-                Console.ReadLine();
-                File.Create("Install-Script2.huh445");
-                File.WriteAllText("CLIPath.txt", Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Arduino-CLI\\arduino-cli.exe"));
-            }
-            else if (string.Equals(installInput, "n", StringComparison.OrdinalIgnoreCase))
-            {
-                Console.Clear();
-                File.Create("Install-Script.huh445");
-            }
-            if (File.Exists(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Arduino-CLI")))
-            {
-                File.WriteAllText("CLIPath.txt", Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Arduino-CLI\\arduino-cli.exe"));
+                if (Directory.Exists(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Arduino-CLI")))
+                {
+                    if (!File.Exists("CLIPath.txt"))
+                    {
+                        Console.WriteLine("CLIPath.txt doesn't exist, but Arduino-CLI is installed in the correct place. \n Creating CLIPath.txt");
+                        File.WriteAllText("CLIPath.txt", Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Arduino-CLI\\arduino-cli.exe"));
+                    }
+                    Console.WriteLine("Install-Script2.huh445 doesn't exist, but Arduino-CLI is installed in the correct place. \n Creating Install-Script2.huh445.");
+                    File.Create("Install-Script2.huh445");
+                }
+                else
+                {
+                Console.Write("Would you like to install Arduino-CLI? (Y/N) ");
+                string installInput = Console.ReadLine() ?? string.Empty;
+                if (string.Equals(installInput, "y", StringComparison.OrdinalIgnoreCase))
+                {
+                    Install();
+                    Console.ReadLine();
+                    File.Create("Install-Script2.huh445");
+                    File.WriteAllText("CLIPath.txt", Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Arduino-CLI\\arduino-cli.exe"));
+                    }
+                else if (string.Equals(installInput, "n", StringComparison.OrdinalIgnoreCase))
+                {
+                    File.Create("Install-Script.huh445");
+                }
+                }
             }
         }
-        }
-        if (!File.Exists("CLIPath.txt"))
-        {
-            if (File.Exists("Install-Script2.huh445"))
-            {
-                File.WriteAllText("CLIPath.txt", Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Arduino-CLI\\arduino-cli.exe"));
-            }
+        if (!File.Exists("CLIPath.txt") && File.Exists("Install-Script2.huh445"))
+        {            
+            Console.WriteLine("CLIPath.txt doesn't exist, but Arduino-CLI is installed in the correct place. \n Creating CLIPath.txt");
+            File.WriteAllText("CLIPath.txt", Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Arduino-CLI\\arduino-cli.exe"));
+            
         }
         string arduinoCliPath = Verify();
         string command = "EMPTY";
@@ -263,18 +268,15 @@ class Program
             string response = Console.ReadLine() ?? string.Empty;
             if (string.Equals(response, "Y", StringComparison.OrdinalIgnoreCase))
             {
-                Console.Clear();
                 Main(args);
             }
             else
             {
-            command = "del CLIPath.txt";
-            ProcessRun(command);
-            Console.WriteLine("Please Wait...");
-            Thread.Sleep(2000);
-            arduinoCliPath = Verify();
-            Console.Clear();
-            Main(args);
+                File.Delete("CLIPath.txt");
+                Console.WriteLine("Please Wait...");
+                Thread.Sleep(2000);
+                arduinoCliPath = Verify();
+                Main(args);
             }
         }
 
@@ -288,9 +290,7 @@ class Program
 
         else if (string.Equals(input, "show", StringComparison.OrdinalIgnoreCase))
         {
-            Console.Clear();
-            readText = File.ReadAllText("CLIPath.txt");
-            Console.WriteLine("The current path to the Arduino CLI is: " + readText);
+            Console.WriteLine("The current path to the Arduino CLI is: " + File.ReadAllText("CLIPath.txt"));
             Thread.Sleep(3000);
             Console.WriteLine("");
             Main(args);
@@ -312,6 +312,10 @@ class Program
                 }
             if (containsDigispark == false)
                 {
+                    if (Directory.Exists(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Arduino-CLI")))
+                    {
+                            Directory.Delete(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Arduino-CLI"), true);
+                    }
                     Console.WriteLine("Your Arduino-CLI seems to have something wrong with it.");
                     Thread.Sleep(500);
                     Console.WriteLine("Make sure that you have the correct location of the executable");
@@ -319,8 +323,7 @@ class Program
                     Console.WriteLine("Alternatively, make sure that you installed Digispark correctly");
                     Thread.Sleep(500);
                     Console.WriteLine("Press enter to exit...");
-                    command = "del CLIPath.txt";
-                    ProcessRun(command);
+                    File.Delete("CLIPath.txt");
                     Console.ReadLine();
                     System.Environment.Exit(0);
                 }
@@ -365,16 +368,12 @@ class Program
 
         if (!int.TryParse(input, out int selectedSketchIndex) || selectedSketchIndex < 1 || selectedSketchIndex > sketchFiles.Length)
         {
-            Console.Clear();
             Console.WriteLine("Invalid input. Please choose a number or a setting from the list.");
             Main(args);
         }
 
         // Get the path of the selected sketch
         string sketchPath = sketchFiles[selectedSketchIndex - 1];
-
-        Console.Clear();
-
         // Build the command to upload the sketch using the micronucleus programmer
         command = $"{arduinoCliPath} compile -b {board} {sketchPath}";
         string output = ProcessRun(command);
