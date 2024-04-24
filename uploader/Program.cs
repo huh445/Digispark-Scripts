@@ -329,7 +329,7 @@ class Program
                     Console.WriteLine("Press enter to exit...");
                     File.Delete("CLIPath.txt");
                     Console.ReadLine();
-                    System.Environment.Exit(0);
+                    Environment.Exit(0);
                 }
         }
 
