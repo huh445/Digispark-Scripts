@@ -81,7 +81,6 @@ class Program
 
     static async void Install()
     {
-        string url = "https://github.com/arduino/arduino-cli/releases/download/v0.35.3/arduino-cli_0.35.3_Windows_64bit.zip";
         string fileName = "Arduino-CLI.zip";
         string documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
         string downloadPath = Path.Combine(documentsPath, fileName);
@@ -91,7 +90,7 @@ class Program
             try
             {
                 Console.WriteLine("Downloading Arduino-CLI...");
-                HttpResponseMessage response = await httpClient.GetAsync(url);
+                HttpResponseMessage response = await httpClient.GetAsync("https://github.com/arduino/arduino-cli/releases/download/v0.35.3/arduino-cli_0.35.3_Windows_64bit.zip");
                 response.EnsureSuccessStatusCode();
                 using (Stream contentStream = await response.Content.ReadAsStreamAsync())
                 {
@@ -218,19 +217,19 @@ class Program
                 }
                 else
                 {
-                Console.Write("Would you like to install Arduino-CLI? (Y/N) ");
-                string installInput = Console.ReadLine() ?? string.Empty;
-                if (string.Equals(installInput, "y", StringComparison.OrdinalIgnoreCase))
-                {
-                    Install();
-                    Console.ReadLine();
-                    File.Create("Install-Script2.huh445");
-                    File.WriteAllText("CLIPath.txt", Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Arduino-CLI\\arduino-cli.exe"));
+                    Console.Write("Would you like to install Arduino-CLI? (Y/N) ");
+                    string installInput = Console.ReadLine() ?? string.Empty;
+                    if (string.Equals(installInput, "y", StringComparison.OrdinalIgnoreCase))
+                    {
+                        Install();
+                        Console.ReadLine();
+                        File.Create("Install-Script2.huh445");
+                        File.WriteAllText("CLIPath.txt", Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Arduino-CLI\\arduino-cli.exe"));
                     }
-                else if (string.Equals(installInput, "n", StringComparison.OrdinalIgnoreCase))
-                {
-                    File.Create("Install-Script.huh445");
-                }
+                    else if (string.Equals(installInput, "n", StringComparison.OrdinalIgnoreCase))
+                    {
+                        File.Create("Install-Script.huh445");
+                    }
                 }
             }
         }
@@ -313,7 +312,7 @@ class Program
                 {
                     containsDigispark = true;
                 }
-                }
+            }
             if (containsDigispark == false)
                 {
                     if (Directory.Exists(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Arduino-CLI")))
@@ -331,36 +330,45 @@ class Program
                     Console.ReadLine();
                     Environment.Exit(0);
                 }
+            else
+            {
+                Console.WriteLine("Please relaunch the program");
+                Thread.Sleep(200);
+                Console.WriteLine("Press Enter to exit...");
+                Console.ReadLine();
+                Environment.Exit(0);
+            }
         }
 
         else if (string.Equals(input, "del", StringComparison.OrdinalIgnoreCase))
         {
-            try{
-            if (File.Exists("Install-Script.huh445"))
+            try
             {
-                File.Delete("Install-Script.huh445");
-                Console.WriteLine("Install-Script.huh445 has been deleted");
-                Thread.Sleep(500);
-            }
-            if (File.Exists("Install-Script2.huh445"))
-            {
-                File.Delete("Install-Script2.huh445");
-                Console.WriteLine("Install Script2.huh445 has been deleted");
-                Thread.Sleep(500);
-            }
-            if (File.Exists("CLIPath.txt"))
-            {
-                File.Delete("CLIPath.txt");
-                Console.WriteLine("CLIPath.txt has been deleted");
-                Thread.Sleep(500);
-            }
-            if (Directory.Exists(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Arduino-CLI")))
-            {
-                Directory.Delete(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Arduino-CLI"), true);
-                Console.WriteLine("Arduino-CLI in documents deleted");
-                Thread.Sleep(500);
-            }
-            }
+                if (File.Exists("Install-Script.huh445"))
+                {
+                    File.Delete("Install-Script.huh445");
+                    Console.WriteLine("Install-Script.huh445 has been deleted");
+                    Thread.Sleep(500);
+                }
+                if (File.Exists("Install-Script2.huh445"))
+                {
+                    File.Delete("Install-Script2.huh445");
+                    Console.WriteLine("Install Script2.huh445 has been deleted");
+                    Thread.Sleep(500);
+                }
+                if (File.Exists("CLIPath.txt"))
+                {
+                    File.Delete("CLIPath.txt");
+                    Console.WriteLine("CLIPath.txt has been deleted");
+                    Thread.Sleep(500);
+                }
+                if (Directory.Exists(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Arduino-CLI")))
+                {
+                    Directory.Delete(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Arduino-CLI"), true);
+                    Console.WriteLine("Arduino-CLI in documents deleted");
+                    Thread.Sleep(500);
+                }
+                }
             catch (Exception ex)
             {
                 Console.WriteLine($"Error: {ex.Message}");
