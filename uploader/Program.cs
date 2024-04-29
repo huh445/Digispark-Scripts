@@ -68,12 +68,16 @@ class Program
                 {
                     if (File.Exists("CLIPath.txt")) {File.Delete("CLIPath.txt");}
                     if (File.Exists("Install-Script.huh445")) {File.Delete("Install-Script.huh445");}
-                    if (File.Exists("Install-Script2.huh445")) {File.Delete("InstallScript2.huh445");}
+                    if (File.Exists("Install-Script2.huh445")) {File.Delete("Install-Script2.huh445");}
+                    Install();
                 }
-                File.Delete("CLIPath.txt");
-                Console.WriteLine("Please Wait...");
-                Thread.Sleep(2000);
-                Verify();
+                else
+                {
+                    File.Delete("CLIPath.txt");
+                    Console.WriteLine("Please Wait...");
+                    Thread.Sleep(2000);
+                    Verify();
+                }
             }
         }
         return arduinoCLIPathInput;
@@ -179,9 +183,9 @@ class Program
         {
             Console.WriteLine($"Error deleting Arduino-CLI.zip {ex.Message}");
         }
-        Console.WriteLine("Press enter to continue...");
-        Console.ReadLine();
+        Console.WriteLine("Please relaunch the program...");
         return;
+        
     }
     
     static string ProcessRun(string command)
@@ -222,9 +226,11 @@ class Program
                     if (string.Equals(installInput, "y", StringComparison.OrdinalIgnoreCase))
                     {
                         Install();
-                        Console.ReadLine();
+                        
                         File.Create("Install-Script2.huh445");
                         File.WriteAllText("CLIPath.txt", Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Arduino-CLI\\arduino-cli.exe"));
+                        Console.ReadLine();
+                        Environment.Exit(0);
                     }
                     else if (string.Equals(installInput, "n", StringComparison.OrdinalIgnoreCase))
                     {
@@ -348,25 +354,21 @@ class Program
                 {
                     File.Delete("Install-Script.huh445");
                     Console.WriteLine("Install-Script.huh445 has been deleted");
-                    Thread.Sleep(500);
                 }
                 if (File.Exists("Install-Script2.huh445"))
                 {
                     File.Delete("Install-Script2.huh445");
                     Console.WriteLine("Install Script2.huh445 has been deleted");
-                    Thread.Sleep(500);
                 }
                 if (File.Exists("CLIPath.txt"))
                 {
                     File.Delete("CLIPath.txt");
                     Console.WriteLine("CLIPath.txt has been deleted");
-                    Thread.Sleep(500);
                 }
                 if (Directory.Exists(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Arduino-CLI")))
                 {
                     Directory.Delete(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Arduino-CLI"), true);
                     Console.WriteLine("Arduino-CLI in documents deleted");
-                    Thread.Sleep(500);
                 }
                 }
             catch (Exception ex)

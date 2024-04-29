@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\charc\\OneDrive\\Documents\\GitHub\\Digispark-Scripts\\uploader\\uploader.csproj": {}
+    "C:\\Users\\Charlie\\Documents\\GitHub\\Digispark-Scripts\\uploader\\uploader.csproj": {}
   },
   "projects": {
-    "C:\\Users\\charc\\OneDrive\\Documents\\GitHub\\Digispark-Scripts\\uploader\\uploader.csproj": {
+    "C:\\Users\\Charlie\\Documents\\GitHub\\Digispark-Scripts\\uploader\\uploader.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\charc\\OneDrive\\Documents\\GitHub\\Digispark-Scripts\\uploader\\uploader.csproj",
+        "projectUniqueName": "C:\\Users\\Charlie\\Documents\\GitHub\\Digispark-Scripts\\uploader\\uploader.csproj",
         "projectName": "uploader",
-        "projectPath": "C:\\Users\\charc\\OneDrive\\Documents\\GitHub\\Digispark-Scripts\\uploader\\uploader.csproj",
-        "packagesPath": "C:\\Users\\charc\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\charc\\OneDrive\\Documents\\GitHub\\Digispark-Scripts\\uploader\\obj\\",
+        "projectPath": "C:\\Users\\Charlie\\Documents\\GitHub\\Digispark-Scripts\\uploader\\uploader.csproj",
+        "packagesPath": "C:\\Users\\Charlie\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Charlie\\Documents\\GitHub\\Digispark-Scripts\\uploader\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\charc\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Charlie\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -32,6 +32,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -53,7 +58,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.104/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
