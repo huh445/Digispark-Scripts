@@ -226,7 +226,6 @@ class Program
                     if (string.Equals(installInput, "y", StringComparison.OrdinalIgnoreCase))
                     {
                         Install();
-                        
                         File.Create("Install-Script2.huh445");
                         File.WriteAllText("CLIPath.txt", Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Arduino-CLI\\arduino-cli.exe"));
                         Console.ReadLine();
