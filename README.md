@@ -12,17 +12,19 @@
 5. Pick the .ino that you want to put on it.
 If there are any issues, feel free to contact me at contact@discok.org
 
-## How does the background changer work?
-1. Go to ChangeBackground.ps1.
-2. Open it in a text editor (any works).
-3. Edit the link to any image link address.
-4. Go to a text hosting site such as https://pastebin.com/.
-5. Put the text in.
-6. Follow the instructions in the text.
-7. Copy the link to the raw text.
-8. Paste the link in the ino file.
-9. Save.
-10. Run!
+## How Does the Background Changer Work?
+
+1. **Go to `ChangeBackground.ps1`.**
+2. **Open it in a text editor** (any text editor works).
+3. **Edit the link** to any image link address.
+4. **Go to a text hosting site** such as [Pastebin](https://pastebin.com/).
+5. **Paste the text** into the site.
+6. **Follow the instructions** provided in the text.
+7. **Copy the link** to the raw text.
+8. **Paste the link** into the `.ino` file.
+9. **Save the file.**
+10. **Run it!**
+
 
 # Digispark Scripts
 Just a few scripts that I have made to troll my friends along the way!
