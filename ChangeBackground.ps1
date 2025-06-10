@@ -2,7 +2,7 @@
 $path = "$env:USERPROFILE\wallpaper.jpg"
 # Replace the link with your own image link!
 #$link = "https://i.ibb.co/ZGcnQf7/bliss-update-1.jpg"
-$link = "https://djj.georgia.gov/sites/djj.georgia.gov/files/2020-04/john_edwards2.jpg"
+$link = "https://i.ibb.co/DPqdL6vC/cum.png"
 $client = New-Object System.Net.WebClient
 
 Remove-Item $path -ErrorAction SilentlyContinue # Remove the file if it exists
