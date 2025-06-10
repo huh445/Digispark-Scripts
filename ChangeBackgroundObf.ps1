@@ -1,4 +1,4 @@
-$u="aHR0cHM6Ly9saDQuZ29vZ2xldXNlcmNvbnRlbnQuY29tL1VyNHZLTWhoY1dIcEV3c19mQVN0dW1SdTFRdTVQREdrOG1jODJRNFctM1hHV0tTblRsOTZoT0JfajFzalZWWnFEUzBZcVZQemp3am5QX3UxNlVvalhxSW9UelpjNGRaTlZ0WTMxMHVaclZmcXhWRjFxNUF6OEtMUl8yZlo5aHY2VXNqWWdUTE9xWXZvQ0lUQm1FUlB0TUF2QzY2UHlJcy0wY3M1V2pvNjVPc2V1aVNKdUw2WTV3PXcxMjgw"
+$u="aHR0cHM6Ly9pLmliYi5jby9EUHFkTDZ2Qy9jdW0ucG5n"
 $p="$env:USERPROFILE\wp.jpg"
 $wc=New-Object System.Net.WebClient
 $wc.DownloadFile([System.Text.Encoding]::UTF8.GetString([Convert]::FromBase64String($u)),$p)
