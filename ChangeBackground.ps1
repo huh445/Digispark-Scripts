@@ -1,14 +1,16 @@
 # Define some objects
 $path = "$env:USERPROFILE\wallpaper.jpg"
-# Replace the link with your own image link!
-#$link = "https://i.ibb.co/ZGcnQf7/bliss-update-1.jpg"
 $link = "https://i.ibb.co/DPqdL6vC/cum.png"
 $client = New-Object System.Net.WebClient
 
-Remove-Item $path -ErrorAction SilentlyContinue # Remove the file if it exists
+Remove-Item $path -ErrorAction SilentlyContinue
+$client.DownloadFile($link, $path)
 
-$client.DownloadFile($link, $path) # Download the file
+# Set registry keys to use Tiled wallpaper style
+Set-ItemProperty -Path 'HKCU:\Control Panel\Desktop' -Name WallpaperStyle -Value 0
+Set-ItemProperty -Path 'HKCU:\Control Panel\Desktop' -Name TileWallpaper -Value 1
 
+# C# class to change wallpaper
 $setwallpapersrc = @"
 using System.Runtime.InteropServices;
 
@@ -25,6 +27,6 @@ public class Wallpaper
   }
 }
 "@
-Add-Type -TypeDefinition $setwallpapersrc
 
-[Wallpaper]::SetWallpaper($path) # Set the wallpaper
+Add-Type -TypeDefinition $setwallpapersrc
+[Wallpaper]::SetWallpaper($path)
