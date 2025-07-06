@@ -1,6 +1,6 @@
 # Define some objects
 $path = "$env:USERPROFILE\wallpaper.jpg"
-$link = "https://i.ibb.co/XnjN8wm/Ethan-In-His-Dreams.png"
+$link = "https://i.ibb.co/DPqdL6vC/cum.png"
 $client = New-Object System.Net.WebClient
 
 Remove-Item $path -ErrorAction SilentlyContinue
