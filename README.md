@@ -3,7 +3,7 @@
 
 ## How do you set up the Digispark ATTINY85 for use with these scripts?
 There are two easy ways to run these scripts, you can either use the [Arduino IDE](https://www.arduino.cc/en/software/).
-Alternatively, you can use my uploader program, which downloads this repo automatically and makes it easier to upload to ATTINY85.
+Alternatively, you can use my **UNFINISHED** [uploader](https://github.com/huh445/Digispark-Uploader) program, which downloads this repo automatically and makes it easier to upload to ATTINY85.
 
 ## How Does the Background Changer Work?
 
